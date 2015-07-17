@@ -32,6 +32,7 @@ public:
     Animation* FindAnimation(ci_string animName);
 	AnimationKey* FindAnimationKey(ci_string keyName);
 
+	Camera* GetCamera() { return mCamera[mCurrentCamera]; }
 private:
     static World* instance;
 

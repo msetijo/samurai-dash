@@ -17,6 +17,7 @@
 #include "CubeModel.h"
 #include "SphereModel.h"
 #include "Animation.h"
+#include "SplineModel.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -230,6 +231,12 @@ void World::LoadScene(const char * scene_path)
 				Animation* anim = new Animation();
 				anim->Load(iss);
 				mAnimation.push_back(anim);
+			}
+			else if (result == "spline")
+			{
+				SplineModel* spline = new SplineModel();
+				spline->Load(iss);
+				mModel.push_back(spline);
 			}
 			else if ( result.empty() == false && result[0] == '#')
 			{

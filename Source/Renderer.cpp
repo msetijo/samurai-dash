@@ -83,6 +83,10 @@ void Renderer::Initialize()
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
                             shaderPathPrefix + "BlueColor.fragmentshader")
                                );
+	sShaderProgramID.push_back(
+				LoadShaders(shaderPathPrefix + "Spline.vertexshader",
+							shaderPathPrefix + "Spline.fragmentshader")
+							   );
 	sCurrentShader = 0;
 
 }
