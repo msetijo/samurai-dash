@@ -11,6 +11,17 @@
 #include "World.h"
 #include "EventManager.h"
 
+#include <GLFW/glfw3.h>
+
+#if defined(WIN32)
+	#include <Windows.h>
+	#define SLEEP_FUNC(x) Sleep((x))
+#else
+	#include <unistd.h>
+	#define SLEEP_FUNC(x)	usleep((x)*1000)
+#endif
+
+#define FPS 60
 
 int main(int argc, char*argv[])
 {
@@ -39,9 +50,13 @@ int main(int argc, char*argv[])
 #endif
 	}
 
+	double fps = 1.0f / FPS;
+
 	// Main Loop
 	do
 	{
+		double start = glfwGetTime();
+
 		// Update Event Manager - Frame time / input / events processing 
 		EventManager::Update();
 
@@ -51,6 +66,13 @@ int main(int argc, char*argv[])
 
 		// Draw World
 		world.Draw();
+
+		// Each frame should be "fps" seconds long.
+		// If updating and rendering took less than fps seconds long then sleep for the remainder.
+		int remainingMs = (start + fps - glfwGetTime()) * 1000;
+		if (remainingMs > 0) {
+			SLEEP_FUNC(remainingMs);
+		}
 	}
 	while(EventManager::ExitRequested() == false);
 
