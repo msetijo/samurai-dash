@@ -9,13 +9,16 @@
 
 #pragma once
 
+
 #include "ParsingHelper.h"
+#include "Billboard.h"
 #include <vector>
 
 class Camera;
 class Model;
 class Animation;
 class AnimationKey;
+class ParticleSystem;
 
 class World
 {
@@ -32,12 +35,21 @@ public:
     Animation* FindAnimation(ci_string animName);
 	AnimationKey* FindAnimationKey(ci_string keyName);
 
+    const Camera* GetCurrentCamera() const;
+    void AddBillboard(Billboard* b);
+    void RemoveBillboard(Billboard* b);
+    void AddParticleSystem(ParticleSystem* particleSystem);
+    void RemoveParticleSystem(ParticleSystem* particleSystem);
+    
 private:
     static World* instance;
-
+    
 	std::vector<Model*> mModel;
     std::vector<Animation*> mAnimation;
     std::vector<AnimationKey*> mAnimationKey;
 	std::vector<Camera*> mCamera;
+    std::vector<ParticleSystem*> mParticleSystemList;
 	unsigned int mCurrentCamera;
+
+    BillboardList* mpBillboardList;
 };

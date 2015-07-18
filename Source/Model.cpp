@@ -10,22 +10,28 @@
 #include "Model.h"
 #include "Animation.h"
 #include "World.h"
+#include "ParticleEmitter.h"
+#include "ParticleDescriptor.h"
+#include "ParticleSystem.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/common.hpp>
-
-#include <glm/gtx/transform.hpp>
 
 using namespace std;
 using namespace glm;
 
 Model::Model() 
-	: mName("UNNAMED"), mPosition(0.0f, 0.0f, 0.0f), mScaling(1.0f, 1.0f, 1.0f), mRotationAxis(0.0f, 1.0f, 0.0f), 
-	  mRotationAngleInDegrees(0.0f), mAnimation(nullptr)
+: mName("UNNAMED"), mPosition(0.0f, 0.0f, 0.0f), mScaling(1.0f, 1.0f, 1.0f), mRotationAxis(0.0f, 1.0f, 0.0f),
+  mRotationAngleInDegrees(0.0f), mAnimation(nullptr), mParticleSystem(nullptr)
 {
 }
 
 Model::~Model()
 {
+    if (mParticleSystem)
+    {
+        World::GetInstance()->RemoveParticleSystem(mParticleSystem);
+        delete mParticleSystem;
+    }
 }
 
 void Model::Update(float dt)
@@ -113,6 +119,28 @@ bool Model::ParseLine(const std::vector<ci_string> &token)
             
             mAnimation = World::GetInstance()->FindAnimation(animName);
 		}
+        else if (token[0] == "particlesystem")
+        {
+            assert(token.size() > 2);
+            assert(token[1] == "=");
+            assert(token[2] == "\"fire\"" || token[2] == "\"fountain\""); // only to hardcoded particle systems
+
+            
+            ParticleEmitter* emitter = new ParticleEmitter(vec3(0.0f, 0.0f, 0.0f), this);
+            ParticleDescriptor* desc = new ParticleDescriptor();
+            
+            if (token[2] == "\"fire\"")
+            {
+                desc->SetFireDescriptor();
+            }
+            else if (token[2] == "\"fountain\"")
+            {
+                desc->SetFountainDescriptor();
+            }
+            
+            mParticleSystem = new ParticleSystem(emitter, desc);
+            World::GetInstance()->AddParticleSystem(mParticleSystem);
+        }
 		else
 		{
 			return false;
@@ -126,11 +154,25 @@ glm::mat4 Model::GetWorldMatrix() const
 {
 	// @TODO 2 - You must build the world matrix from the position, scaling and rotation informations
     //           If the model has an animation, get the world transform from the animation.
-	
-	// @MYCODE
-	return mAnimation ? 
-			mAnimation->GetAnimationWorldMatrix() :
-			translate(mPosition) * rotate(mRotationAngleInDegrees, mRotationAxis) * scale(mScaling);
+	mat4 worldMatrix(1.0f);
+
+    // Solution TRS
+#if 1
+    if (mAnimation)
+    {
+        // Get world transform from animation key frames / current time
+        worldMatrix = mAnimation->GetAnimationWorldMatrix();
+    }
+    else
+    {
+        mat4 t = glm::translate(mat4(1.0f), mPosition);
+        mat4 r = glm::rotate(mat4(1.0f), mRotationAngleInDegrees, mRotationAxis);
+        mat4 s = glm::scale(mat4(1.0f), mScaling);
+        worldMatrix = t * r * s;
+    }
+#endif
+    
+	return worldMatrix;
 }
 
 void Model::SetPosition(glm::vec3 position)

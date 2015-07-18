@@ -54,16 +54,19 @@ void Renderer::Initialize()
     // Somehow, glewInit triggers a glInvalidEnum... Let's ignore it
     glGetError();
     
-    
 	// Black background
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	
 	// Enable depth test
     glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
     
-	// Accept fragment if it closer to the camera than the former one
-    glDepthFunc(GL_LESS); 
+    // Enable Blending
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    CheckForErrors();
+    
 	// Loading Shaders
 #if defined(PLATFORM_OSX)
     std::string shaderPathPrefix = "Shaders/";
@@ -83,6 +86,12 @@ void Renderer::Initialize()
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
                             shaderPathPrefix + "BlueColor.fragmentshader")
                                );
+    
+    sShaderProgramID.push_back(
+                               LoadShaders(shaderPathPrefix + "Texture.vertexshader",
+                                           shaderPathPrefix + "Texture.fragmentshader")
+                               );
+
 	sCurrentShader = 0;
 
 }

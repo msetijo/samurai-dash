@@ -17,14 +17,21 @@
 #include "CubeModel.h"
 #include "SphereModel.h"
 #include "Animation.h"
-
+#include "Billboard.h"
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
+#include "TextureLoader.h"
+
+#include "ParticleDescriptor.h"
+#include "ParticleEmitter.h"
+#include "ParticleSystem.h"
+
 
 using namespace std;
 using namespace glm;
 
 World* World::instance;
+
 
 World::World()
 {
@@ -36,6 +43,48 @@ World::World()
 	mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
 	mCurrentCamera = 0;
 
+    
+    // TODO: You can play with different textures by changing the billboardTest.bmp to another texture
+#if defined(PLATFORM_OSX)
+//    int billboardTextureID = TextureLoader::LoadTexture("Textures/BillboardTest.bmp");
+    int billboardTextureID = TextureLoader::LoadTexture("Textures/Particle.png");
+#else
+//    int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
+    int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/Particle.png");
+#endif
+    assert(billboardTextureID != 0);
+
+    mpBillboardList = new BillboardList(2048, billboardTextureID);
+
+    
+    // TODO - You can un-comment out these 2 temporary billboards and particle system
+    // That can help you debug billboards, you can set the billboard texture to billboardTest.png
+    /*    Billboard *b = new Billboard();
+     b->size  = glm::vec2(2.0, 2.0);
+     b->position = glm::vec3(0.0, 3.0, 0.0);
+     b->color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+     
+     Billboard *b2 = new Billboard();
+     b2->size  = glm::vec2(2.0, 2.0);
+     b2->position = glm::vec3(0.0, 3.0, 1.0);
+     b2->color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+
+     mpBillboardList->AddBillboard(b);
+     mpBillboardList->AddBillboard(b2);
+
+     
+     ParticleDescriptor* fountainDescriptor = new ParticleDescriptor();
+     fountainDescriptor->SetFireDescriptor();
+     
+     ParticleDescriptor* fireDescriptor = new ParticleDescriptor();
+     fireDescriptor->SetFireDescriptor();
+     
+     ParticleEmitter* emitter = new ParticleEmitter(vec3(0.0f, 0.0f, 0.0f));
+     
+     ParticleSystem* ps = new ParticleSystem(emitter, fountainDescriptor);
+     AddParticleSystem(ps);
+
+     */    // TMP
 }
 
 World::~World()
@@ -68,6 +117,8 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
+
+	delete mpBillboardList;
 }
 
 World* World::GetInstance()
@@ -128,6 +179,16 @@ void World::Update(float dt)
 	{
 		(*it)->Update(dt);
 	}
+    
+    // Update billboards
+    
+    for (vector<ParticleSystem*>::iterator it = mParticleSystemList.begin(); it != mParticleSystemList.end(); ++it)
+    {
+        (*it)->Update(dt);
+    }
+    
+    mpBillboardList->Update(dt);
+
 }
 
 void World::Draw()
@@ -138,7 +199,7 @@ void World::Draw()
 	glUseProgram(Renderer::GetShaderProgramID());
 
 	// This looks for the MVP Uniform variable in the Vertex Program
-	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectonTransform"); 
+	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform");
 
 	// Send the view projection constants to the shader
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
@@ -158,7 +219,7 @@ void World::Draw()
 	glUseProgram(Renderer::GetShaderProgramID());
 
 	// Send the view projection constants to the shader
-	VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectonTransform");
+	VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform");
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
 
 	for (vector<Animation*>::iterator it = mAnimation.begin(); it < mAnimation.end(); ++it)
@@ -176,6 +237,11 @@ void World::Draw()
 
 		(*it)->Draw();
 	}
+
+    Renderer::CheckForErrors();
+    
+    // Draw Billboards
+    mpBillboardList->Draw();
 
 
 	// Restore previous shader
@@ -275,4 +341,30 @@ AnimationKey* World::FindAnimationKey(ci_string keyName)
         }
     }
     return nullptr;
+}
+
+const Camera* World::GetCurrentCamera() const
+{
+     return mCamera[mCurrentCamera];
+}
+
+void World::AddBillboard(Billboard* b)
+{
+    mpBillboardList->AddBillboard(b);
+}
+
+void World::RemoveBillboard(Billboard* b)
+{
+    mpBillboardList->RemoveBillboard(b);
+}
+
+void World::AddParticleSystem(ParticleSystem* particleSystem)
+{
+    mParticleSystemList.push_back(particleSystem);
+}
+
+void World::RemoveParticleSystem(ParticleSystem* particleSystem)
+{
+    vector<ParticleSystem*>::iterator it = std::find(mParticleSystemList.begin(), mParticleSystemList.end(), particleSystem);
+    mParticleSystemList.erase(it);
 }

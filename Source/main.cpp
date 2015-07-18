@@ -10,15 +10,16 @@
 #include "Renderer.h"
 #include "World.h"
 #include "EventManager.h"
-
+#include "Billboard.h"
+#include "TextureLoader.h"
 
 int main(int argc, char*argv[])
 {
 	EventManager::Initialize();
 	Renderer::Initialize();
 
-	World world;
-
+	World world;    
+    
 	if (argc > 1)
 	{
 		world.LoadScene(argv[1]);
@@ -29,11 +30,13 @@ int main(int argc, char*argv[])
 		// Static Scene contains no animation
 		// Animated Scene does
 #if defined(PLATFORM_OSX)		
+		world.LoadScene("Scenes/AnimatedSceneWithParticles.scene");
 //		world.LoadScene("Scenes/AnimatedScene.scene");
-		world.LoadScene("Scenes/StaticScene.scene");
+//		world.LoadScene("Scenes/StaticScene.scene");
 //		world.LoadScene("Scenes/CoordinateSystem.scene");
 #else
-		world.LoadScene("../Assets/Scenes/AnimatedScene.scene");
+		world.LoadScene("../Assets/Scenes/AnimatedSceneWithParticles.scene");
+//		world.LoadScene("../Assets/Scenes/AnimatedScene.scene");
 //		world.LoadScene("../Assets/Scenes/StaticScene.scene");
 //		world.LoadScene("../Assets/Scenes/CoordinateSystem.scene");
 #endif
@@ -50,7 +53,7 @@ int main(int argc, char*argv[])
 		world.Update(dt);
 
 		// Draw World
-		world.Draw();
+		world.Draw();        
 	}
 	while(EventManager::ExitRequested() == false);
 

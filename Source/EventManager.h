@@ -29,7 +29,7 @@ public:
 
 	static void EnableMouseCursor();
 	static void DisableMouseCursor();
-
+    static float GetRandomFloat(float min, float max);
 
 private:
 	// Time
