@@ -106,15 +106,24 @@ void ParticleSystem::Update(float dt)
         // Phase 1 - Initial: from t = [0, fadeInTime] - Linearly interpolate between initial color and mid color
         // Phase 2 - Mid:     from t = [fadeInTime, lifeTime - fadeOutTime] - color is mid color
         // Phase 3 - End:     from t = [lifeTime - fadeOutTime, lifeTime]
-                
+
+		vec3 velocity = p->velocity;
+		p->velocity += mpDescriptor->acceleration * dt;
+		p->billboard.position += velocity * dt + 0.5f * mpDescriptor->acceleration * dt * dt;
         
-        // ...
-        p->billboard.position += p->velocity * dt;
-        p->billboard.color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
-        p->billboard.size += 0.01f;
-        // ...
-        
-        
+		if (p->currentTime <= mpDescriptor->fadeInTime) { // Initial
+			float c = p->currentTime / mpDescriptor->fadeInTime;
+			p->billboard.color = mix(mpDescriptor->initialColor, mpDescriptor->midColor, c);
+		}
+		else if (p->currentTime <= p->lifeTime - mpDescriptor->fadeOutTime) { // Mid
+			p->billboard.color = mpDescriptor->midColor;
+		}
+		else if (p->currentTime <= p->lifeTime) { // End
+			float c = p->currentTime - (p->lifeTime - mpDescriptor->fadeOutTime) / mpDescriptor->fadeOutTime;
+			p->billboard.color = mix(mpDescriptor->midColor, mpDescriptor->endColor, c);
+		}
+
+		p->billboard.size += mpDescriptor->sizeGrowthVelocity * dt;
         
         // Particles are destroyed if expired
         // Remove from the send particle to inactive list
