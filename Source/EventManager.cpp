@@ -15,6 +15,11 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
 using namespace std;
 
 
@@ -50,12 +55,14 @@ void EventManager::Initialize()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_DEPTH_BITS, 32);
     
 #else
     // Allow older laptops to run the framework, even though, our framework
     // is compatible with OpenGL 3.3 (which removed many deprecated features)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_DEPTH_BITS, 32);
 #endif
     
     
@@ -83,7 +90,7 @@ void EventManager::Initialize()
 
 	// Initial time
 	sLastFrameTime = glfwGetTime();
-
+    srand(time(nullptr));
 }
 
 void EventManager::Shutdown()
@@ -145,4 +152,11 @@ void EventManager::EnableMouseCursor()
 void EventManager::DisableMouseCursor()
 {
 	glfwSetInputMode(spWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+}
+
+float EventManager::GetRandomFloat(float min, float max)
+{
+    float value = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+    return min + value*(max - min);
 }

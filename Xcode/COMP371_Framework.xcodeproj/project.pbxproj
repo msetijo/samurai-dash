@@ -13,6 +13,13 @@
 		038B79181A6FF35E00111E36 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79171A6FF35E00111E36 /* libGLEW.a */; };
 		038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79191A6FF39000111E36 /* CoreVideo.framework */; };
 		038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B791D1A6FF3EB00111E36 /* IOKit.framework */; };
+		039EC6801B4DAFBD0061B0B7 /* Billboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039EC67E1B4DAFBD0061B0B7 /* Billboard.cpp */; };
+		039EC6871B4DAFD90061B0B7 /* ParticleDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039EC6811B4DAFD90061B0B7 /* ParticleDescriptor.cpp */; };
+		039EC6881B4DAFD90061B0B7 /* ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039EC6831B4DAFD90061B0B7 /* ParticleEmitter.cpp */; };
+		039EC6891B4DAFD90061B0B7 /* ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039EC6851B4DAFD90061B0B7 /* ParticleSystem.cpp */; };
+		039EC68C1B4DAFEA0061B0B7 /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039EC68A1B4DAFEA0061B0B7 /* TextureLoader.cpp */; };
+		03CF97D11B56DF9A00F60482 /* libfreeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CF97D01B56DF9A00F60482 /* libfreeimage.a */; };
+		03DB7BB71B5456A800B0CC69 /* Textures in CopyFiles */ = {isa = PBXBuildFile; fileRef = 03DB7BB61B543CF800B0CC69 /* Textures */; };
 		03FE4EAB1B2F8D990020F06F /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FE4E951B2F8D990020F06F /* Camera.cpp */; };
 		03FE4EAC1B2F8D990020F06F /* CubeModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FE4E971B2F8D990020F06F /* CubeModel.cpp */; };
 		03FE4EAD1B2F8D990020F06F /* EventManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FE4E991B2F8D990020F06F /* EventManager.cpp */; };
@@ -35,6 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				03DB7BB71B5456A800B0CC69 /* Textures in CopyFiles */,
 				03FE4ED41B2FA1210020F06F /* Scenes in CopyFiles */,
 				03FE4ED51B2FA1210020F06F /* Shaders in CopyFiles */,
 			);
@@ -51,6 +59,18 @@
 		038B79191A6FF39000111E36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		038B791B1A6FF3D100111E36 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		038B791D1A6FF3EB00111E36 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		039EC67E1B4DAFBD0061B0B7 /* Billboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Billboard.cpp; sourceTree = "<group>"; };
+		039EC67F1B4DAFBD0061B0B7 /* Billboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Billboard.h; sourceTree = "<group>"; };
+		039EC6811B4DAFD90061B0B7 /* ParticleDescriptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleDescriptor.cpp; sourceTree = "<group>"; };
+		039EC6821B4DAFD90061B0B7 /* ParticleDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleDescriptor.h; sourceTree = "<group>"; };
+		039EC6831B4DAFD90061B0B7 /* ParticleEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleEmitter.cpp; sourceTree = "<group>"; };
+		039EC6841B4DAFD90061B0B7 /* ParticleEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEmitter.h; sourceTree = "<group>"; };
+		039EC6851B4DAFD90061B0B7 /* ParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleSystem.cpp; sourceTree = "<group>"; };
+		039EC6861B4DAFD90061B0B7 /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleSystem.h; sourceTree = "<group>"; };
+		039EC68A1B4DAFEA0061B0B7 /* TextureLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureLoader.cpp; sourceTree = "<group>"; };
+		039EC68B1B4DAFEA0061B0B7 /* TextureLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureLoader.h; sourceTree = "<group>"; };
+		03CF97D01B56DF9A00F60482 /* libfreeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreeimage.a; path = "../ThirdParty/FreeImage-3170/lib/osx/libfreeimage.a"; sourceTree = "<group>"; };
+		03DB7BB61B543CF800B0CC69 /* Textures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Textures; path = ../Assets/Textures; sourceTree = "<group>"; };
 		03FE4E951B2F8D990020F06F /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		03FE4E961B2F8D990020F06F /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		03FE4E971B2F8D990020F06F /* CubeModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeModel.cpp; sourceTree = "<group>"; };
@@ -82,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03CF97D11B56DF9A00F60482 /* libfreeimage.a in Frameworks */,
 				038B79181A6FF35E00111E36 /* libGLEW.a in Frameworks */,
 				031A65F71A702EBB003BF698 /* libglfw3.a in Frameworks */,
 				038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */,
@@ -113,6 +134,7 @@
 			children = (
 				03FE4ED21B2FA1010020F06F /* Scenes */,
 				03FE4ED31B2FA1010020F06F /* Shaders */,
+				03DB7BB61B543CF800B0CC69 /* Textures */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -120,6 +142,7 @@
 		0371ABC21A6EAF2E00029CF8 = {
 			isa = PBXGroup;
 			children = (
+				03CF97D01B56DF9A00F60482 /* libfreeimage.a */,
 				038B785E1A6EB3F500111E36 /* Source */,
 				034F0BB31A7010160028E1BA /* Resources */,
 				034F0BB11A700D0F0028E1BA /* Linked Frameworks */,
@@ -140,6 +163,8 @@
 			children = (
 				03FE4ED61B2FA9830020F06F /* Animation.cpp */,
 				03FE4ED71B2FA9830020F06F /* Animation.h */,
+				039EC67E1B4DAFBD0061B0B7 /* Billboard.cpp */,
+				039EC67F1B4DAFBD0061B0B7 /* Billboard.h */,
 				03FE4E951B2F8D990020F06F /* Camera.cpp */,
 				03FE4E961B2F8D990020F06F /* Camera.h */,
 				03FE4E971B2F8D990020F06F /* CubeModel.cpp */,
@@ -152,12 +177,20 @@
 				03FE4E9E1B2F8D990020F06F /* Model.cpp */,
 				03FE4E9F1B2F8D990020F06F /* Model.h */,
 				03FE4EA01B2F8D990020F06F /* ParsingHelper.h */,
+				039EC6811B4DAFD90061B0B7 /* ParticleDescriptor.cpp */,
+				039EC6821B4DAFD90061B0B7 /* ParticleDescriptor.h */,
+				039EC6831B4DAFD90061B0B7 /* ParticleEmitter.cpp */,
+				039EC6841B4DAFD90061B0B7 /* ParticleEmitter.h */,
+				039EC6851B4DAFD90061B0B7 /* ParticleSystem.cpp */,
+				039EC6861B4DAFD90061B0B7 /* ParticleSystem.h */,
 				03FE4EA31B2F8D990020F06F /* Renderer.cpp */,
 				03FE4EA41B2F8D990020F06F /* Renderer.h */,
 				03FE4EA51B2F8D990020F06F /* SphereModel.cpp */,
 				03FE4EA61B2F8D990020F06F /* SphereModel.h */,
 				03FE4EA71B2F8D990020F06F /* StaticCamera.cpp */,
 				03FE4EA81B2F8D990020F06F /* StaticCamera.h */,
+				039EC68A1B4DAFEA0061B0B7 /* TextureLoader.cpp */,
+				039EC68B1B4DAFEA0061B0B7 /* TextureLoader.h */,
 				03FE4EA91B2F8D990020F06F /* World.cpp */,
 				03FE4EAA1B2F8D990020F06F /* World.h */,
 			);
@@ -222,11 +255,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				03FE4EB41B2F8D990020F06F /* StaticCamera.cpp in Sources */,
+				039EC6801B4DAFBD0061B0B7 /* Billboard.cpp in Sources */,
 				03FE4EAD1B2F8D990020F06F /* EventManager.cpp in Sources */,
 				03FE4EB31B2F8D990020F06F /* SphereModel.cpp in Sources */,
+				039EC6871B4DAFD90061B0B7 /* ParticleDescriptor.cpp in Sources */,
 				03FE4EAC1B2F8D990020F06F /* CubeModel.cpp in Sources */,
+				039EC6881B4DAFD90061B0B7 /* ParticleEmitter.cpp in Sources */,
 				03FE4EAE1B2F8D990020F06F /* FirstPersonCamera.cpp in Sources */,
+				039EC6891B4DAFD90061B0B7 /* ParticleSystem.cpp in Sources */,
 				03FE4EB51B2F8D990020F06F /* World.cpp in Sources */,
+				039EC68C1B4DAFEA0061B0B7 /* TextureLoader.cpp in Sources */,
 				03FE4EB21B2F8D990020F06F /* Renderer.cpp in Sources */,
 				03FE4EB01B2F8D990020F06F /* Model.cpp in Sources */,
 				03FE4EAF1B2F8D990020F06F /* main.cpp in Sources */,
@@ -326,11 +364,13 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
+					"../ThirdParty/FreeImage-3170/Source",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
+					"../ThirdParty/FreeImage-3170/lib/osx",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -346,11 +386,13 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
+					"../ThirdParty/FreeImage-3170/Source",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
+					"../ThirdParty/FreeImage-3170/lib/osx",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
