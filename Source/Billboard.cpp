@@ -99,6 +99,10 @@ void BillboardList::Update(float dt)
     // Maybe the view matrix will be useful to align the billboards
     const Camera* cam = World::GetInstance()->GetCurrentCamera();
     mat4 viewMatrix = cam->GetViewMatrix();
+
+	// @MYCODE
+	vec3 right = vec3(viewMatrix[0][0], viewMatrix[1][0], viewMatrix[2][0]);
+	vec3 up = vec3(viewMatrix[0][1], viewMatrix[1][1], viewMatrix[2][1]);
     
     // @TODO 4 - Align billboards with Camera plane
     //
@@ -108,42 +112,22 @@ void BillboardList::Update(float dt)
     {
         const Billboard* b = *it;
 
-        // ... The code below needs to be modified ...
-        
-        // First triangle
-        // Top left
-        mVertexBuffer[firstVertexIndex].position.x = b->position.x - 0.5f*b->size.x;
-        mVertexBuffer[firstVertexIndex].position.y = b->position.y + 0.5f*b->size.y;
-        mVertexBuffer[firstVertexIndex].position.z = b->position.z;
-        
-        // Bottom Left
-        mVertexBuffer[firstVertexIndex + 1].position.x = b->position.x - 0.5f*b->size.x;
-        mVertexBuffer[firstVertexIndex + 1].position.y = b->position.y - 0.5f*b->size.y;
-        mVertexBuffer[firstVertexIndex + 1].position.z = b->position.z;
-        
-        // Top Right
-        mVertexBuffer[firstVertexIndex + 2].position.x = b->position.x + 0.5f*b->size.x;
-        mVertexBuffer[firstVertexIndex + 2].position.y = b->position.y + 0.5f*b->size.y;
-        mVertexBuffer[firstVertexIndex + 2].position.z = b->position.z;
-        
-        // Second Triangle
-        // Top Right
-        mVertexBuffer[firstVertexIndex + 3].position.x = b->position.x + 0.5f*b->size.x;
-        mVertexBuffer[firstVertexIndex + 3].position.y = b->position.y + 0.5f*b->size.y;
-        mVertexBuffer[firstVertexIndex + 3].position.z = b->position.z;
-        
-        // Bottom Left
-        mVertexBuffer[firstVertexIndex + 4].position.x = b->position.x - 0.5f*b->size.x;
-        mVertexBuffer[firstVertexIndex + 4].position.y = b->position.y - 0.5f*b->size.y;
-        mVertexBuffer[firstVertexIndex + 4].position.z = b->position.z;
-        
-        // Bottom Right
-        mVertexBuffer[firstVertexIndex + 5].position.x = b->position.x + 0.5f*b->size.x;
-        mVertexBuffer[firstVertexIndex + 5].position.y = b->position.y - 0.5f*b->size.y;
-        mVertexBuffer[firstVertexIndex + 5].position.z = b->position.z;
-        
-        // ... The code above needs to be modified ...
+		// @MYCODE
+		// First triangle
+		// Top left
+		mVertexBuffer[firstVertexIndex].position = b->position + (0.5f * b->size.x * -right) + (0.5f * b->size.y * up);
+		// Bottom Left
+		mVertexBuffer[firstVertexIndex + 1].position = b->position + (0.5f * b->size.x * -right) + (0.5f * b->size.y * -up);
+		// Top Right
+		mVertexBuffer[firstVertexIndex + 2].position = b->position + (0.5f * b->size.x * right) + (0.5f * b->size.y * up);
 
+		// Second Triangle
+		// Top Right
+		mVertexBuffer[firstVertexIndex + 3].position = b->position + (0.5f * b->size.x * right) + (0.5f * b->size.y * up);
+		// Bottom Left
+		mVertexBuffer[firstVertexIndex + 4].position = b->position + (0.5f * b->size.x * -right) + (0.5f * b->size.y * -up);
+		// Bottom Right
+		mVertexBuffer[firstVertexIndex + 5].position = b->position + (0.5f * b->size.x * right) + (0.5f * b->size.y * -up);
         
         firstVertexIndex += 6;
     }
