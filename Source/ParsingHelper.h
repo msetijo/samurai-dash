@@ -18,6 +18,9 @@
 #include <sstream>
 #include <iterator>
 #include <algorithm>
+#include <vector>
+
+#include <glm/vec3.hpp>
 
 // Case insensitive strings (eg: Hello == HELLo) 
 // This is used for parsing scene files
@@ -61,3 +64,17 @@ typedef std::basic_ifstream<char, ci_char_traits> ci_ifstream;
 typedef std::basic_istringstream<char, ci_char_traits> ci_istringstream;
 typedef std::basic_stringstream<char, ci_char_traits> ci_stringstream;
 typedef std::basic_istream<char, ci_char_traits> ci_istream;
+
+class PasingHelper {
+
+public:
+	static void parseVec3(const std::vector<ci_string> &token, glm::vec3& v) {
+
+		assert(token.size() > 4);
+		assert(token[1] == "=");
+
+		v.x = static_cast<float>(atof(token[2].c_str()));
+		v.y = static_cast<float>(atof(token[3].c_str()));
+		v.z = static_cast<float>(atof(token[4].c_str()));
+	}
+};

@@ -1,12 +1,19 @@
 #ifndef SPLINEMODEL_H
 #define SPLINEMODEL_H
 
+#include <vector>
+
 #include "Model.h"
 #include "Vertexes.h"
 
 class SplineModel : public Model {
 
 public:
+	struct Vertex {
+		glm::vec3 position;
+		glm::vec3 color;
+	};
+
 	SplineModel();
 	virtual ~SplineModel();
 
@@ -14,18 +21,24 @@ public:
 	
 	virtual void Draw();
 
+	bool HasControlPoints() { return !mControlPoints.empty(); }
+	std::vector<Vertex>& GetControlPoints() { return mControlPoints; }
+
+	void SetControlPoints(std::vector<Vertex>& controlPoints);
+
+	void SetPoints(std::vector<Vertex>& points);
+
+	virtual void Load(ci_istringstream& iss);
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 private:
-	struct Vertex {
-		glm::vec3 position;
-		glm::vec3 color;
-	};
+
+	std::vector<Vertex> mControlPoints;
 
 	VertexArray mArray;
-	VertexBuffer mControlPoints;
-	VertexBuffer mPoints;
+	VertexBuffer mControlPointsBuffer;
+	VertexBuffer mPointsBuffer;
 };
 
 #endif

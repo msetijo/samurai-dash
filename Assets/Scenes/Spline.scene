@@ -1,0 +1,40 @@
+[Cube]
+name     = "Ground"
+scaling  = 100.0 1.0 100.0
+position = 0.0 -0.5 0.0
+rotation = 0.0 0.0 1.0 0.0
+
+[Spline]
+name     = "Spline"
+rotation = 0 1 0 45
+controlPoint = 0 3 0
+controlPoint = 10 20 0
+controlPoint = 20 15 0
+controlPoint = 30 10 0
+controlPoint = 35 15 0
+controlPoint = 40 20 0
+
+# This should draw a coordinate system with 3 colored axes
+
+[Cube]
+name = "X-axis"
+position = 0.5f 0.0f 0.0f
+rotation = 0.0f 0.0f 1.0f 0.0f
+scaling = 1.0f 0.1f 0.1f 
+
+[Cube]
+name = "Y-axis"
+position = 0.0f 0.5f 0.0f
+rotation = 0.0f 0.0f 1.0f 90.0f
+scaling = 1.0f 0.1f 0.1f 
+
+[Cube]
+name = "Z-axis"
+position = 0.0f 0.0f 0.5f
+rotation = 0.0f 1.0f 0.0f -90.0f
+scaling = 1.0f 0.1f 0.1f 
+
+[Cube]
+name = "Origin"
+position = 0.0f 0.0f 0.0f
+scaling = 0.12f 0.12f 0.12f

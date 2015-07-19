@@ -1,6 +1,6 @@
 #include "Vertexes.h"
 
-VertexBuffer::VertexBuffer() : mId() {
+VertexBuffer::VertexBuffer() : mId(), mSize() {
 	glGenBuffers(1, &mId);
 }
 
