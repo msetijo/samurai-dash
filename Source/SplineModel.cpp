@@ -12,7 +12,7 @@
 
 using namespace glm;
 
-SplineModel::SplineModel() : Model(), mControlPoints(), mArray(), mControlPointsBuffer(), mPointsBuffer(), mOscullatingPlanesBuffer()
+SplineModel::SplineModel() : Model(), mControlPoints(), mSplineModelPlaneDelegate(nullptr), mArray(), mControlPointsBuffer(), mPointsBuffer(), mOscullatingPlanesBuffer()
 {
 }
 
@@ -73,6 +73,11 @@ vec3 SplineModel::At(float t) {
 	return position;
 }
 
+SplineModel::Plane SplineModel::PlaneAt(float t) {
+
+	return mSplineModelPlaneDelegate->At(*this, t);
+}
+
 void SplineModel::SetControlPoints(std::vector<Vertex>& controlPoints) {
 
 	mControlPoints.resize(controlPoints.size());
@@ -81,9 +86,11 @@ void SplineModel::SetControlPoints(std::vector<Vertex>& controlPoints) {
 	mControlPointsBuffer.SetData(&mControlPoints[0], mControlPoints.size() * sizeof(Vertex));
 }
 
-void SplineModel::SetPoints(std::vector<Vertex>& points) {
+void SplineModel::SetPoints(std::vector<Vertex>& points, SplineModelPlaneDelegate& splinePlaneDelegate) {
 
 	mPointsBuffer.SetData(&points[0], points.size() * sizeof(Vertex));
+
+	mSplineModelPlaneDelegate = &splinePlaneDelegate;
 }
 
 void SplineModel::SetOscullatingPlanes(std::vector<Vertex>& oscullatingPlanes) {

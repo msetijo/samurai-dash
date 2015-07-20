@@ -56,6 +56,7 @@ void SplineFactory::makeControlPoints(SplineModel& spline) {
 
 const int SplineFactory::triangleStripSegmentCount = 5;
 const float SplineFactory::trackWidth = 20.0f;
+SplineFactoryPlaneDelegate SplineFactory::splinePlaneDelegate;
 
 void SplineFactory::makeTriangleStrip(SplineModel& spline) {
 
@@ -95,8 +96,43 @@ void SplineFactory::makeTriangleStrip(SplineModel& spline) {
 		colorChoice = (colorChoice + 1) % 3;
 	}
 
-	spline.SetPoints(points);
+	spline.SetPoints(points, splinePlaneDelegate);
+}
+
+SplineModel::Plane SplineFactoryPlaneDelegate::At(SplineModel& spline, float t) {
+	
+	vec3 position = spline.At(t);
+	vec3 next = spline.At(t + 0.05f);
+
+	vec3 tangent = normalize(next - position);
+	
+	vec3 normal = vec3(-1.0f, 0.0f, 0.0f);
+
+	return { position, tangent, normal };
 }
 
 void SplineFactory::makeOscullatingPlanes(SplineModel& spline) {
+
+	std::vector<SplineModel::Vertex> points;
+	
+	vec3 color(1); // white
+
+	for (float t = 0; t < spline.MaxTime(); t += 0.5f) {
+
+		SplineModel::Plane p = spline.PlaneAt(t);
+		vec3 B = normalize(cross(p.tangent, p.normal));
+
+		vec3 translation = 2.0f * B;
+
+		points.push_back({ translation + p.position, color });
+		points.push_back({ translation + p.position + p.tangent, color });
+
+		points.push_back({ translation + p.position, color });
+		points.push_back({ translation + p.position + p.normal, color });
+
+		points.push_back({ translation + p.position, color });
+		points.push_back({ translation + p.position + B, color });
+	}
+
+	spline.SetOscullatingPlanes(points);
 }

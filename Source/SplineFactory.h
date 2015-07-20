@@ -5,6 +5,11 @@
 #include "ParsingHelper.h"
 #include "SplineModel.h"
 
+class SplineFactoryPlaneDelegate : public SplineModelPlaneDelegate {
+
+	virtual SplineModel::Plane At(SplineModel& spline, float t);
+};
+
 class SplineFactory {
 
 public:
@@ -51,10 +56,18 @@ private:
 	static const float trackWidth;
 
 	/**
+	 *
+	 */
+	static SplineFactoryPlaneDelegate splinePlaneDelegate;
+
+	/**
 	 * Create the triangle strip for the spline.
 	 */
 	static void makeTriangleStrip(SplineModel& spline);
 
+	/**
+	 *
+	 */
 	static void makeOscullatingPlanes(SplineModel& spline);
 };
 
