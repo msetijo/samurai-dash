@@ -147,14 +147,14 @@
     <None Include="..\Assets\Scenes\AnimatedScene.scene">
       <Filter>Resource Files\Scenes</Filter>
     </None>
-    <None Include="..\Assets\Scenes\Ground.scene">
-      <Filter>Resource Files\Scenes</Filter>
-    </None>
     <None Include="..\Assets\Shaders\Spline.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="..\Assets\Shaders\Spline.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Assets\Scenes\Spline.scene">
+      <Filter>Resource Files\Scenes</Filter>
     </None>
   </ItemGroup>
 </Project>

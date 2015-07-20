@@ -133,7 +133,7 @@
   <ItemGroup>
     <None Include="..\Assets\Scenes\AnimatedScene.scene" />
     <None Include="..\Assets\Scenes\CoordinateSystem.scene" />
-    <None Include="..\Assets\Scenes\Ground.scene" />
+    <None Include="..\Assets\Scenes\Spline.scene" />
     <None Include="..\Assets\Scenes\StaticScene.scene" />
     <None Include="..\Assets\Shaders\BlueColor.fragmentshader" />
     <None Include="..\Assets\Shaders\PathLines.fragmentshader" />

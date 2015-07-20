@@ -18,8 +18,12 @@ public:
 	virtual ~SplineModel();
 
 	virtual void Update(float dt) {};
-	
+
 	virtual void Draw();
+
+	glm::vec3 At(float t);
+
+	int MaxTime() { return mControlPoints.size() - 4; }
 
 	bool HasControlPoints() { return !mControlPoints.empty(); }
 	std::vector<Vertex>& GetControlPoints() { return mControlPoints; }
@@ -28,7 +32,8 @@ public:
 
 	void SetPoints(std::vector<Vertex>& points);
 
-	virtual void Load(ci_istringstream& iss);
+	void SetOscullatingPlanes(std::vector<Vertex>& oscullatingPlanes);
+
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
@@ -39,6 +44,8 @@ private:
 	VertexArray mArray;
 	VertexBuffer mControlPointsBuffer;
 	VertexBuffer mPointsBuffer;
+
+	VertexBuffer mOscullatingPlanesBuffer;
 };
 
 #endif

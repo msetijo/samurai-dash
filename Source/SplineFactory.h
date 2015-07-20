@@ -28,6 +28,11 @@ private:
 	static const glm::vec2 deltaMaxControlPoint;
 
 	/**
+	 *
+	 */
+	static const glm::vec3 controlPointsColor;
+
+	/**
 	 * Create random control points for the spline
 	 */
 	static void makeControlPoints(SplineModel& spline);
@@ -49,6 +54,8 @@ private:
 	 * Create the triangle strip for the spline.
 	 */
 	static void makeTriangleStrip(SplineModel& spline);
+
+	static void makeOscullatingPlanes(SplineModel& spline);
 };
 
 #endif
