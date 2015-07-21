@@ -18,20 +18,18 @@
 #include "SphereModel.h"
 #include "Animation.h"
 #include "Billboard.h"
+#include "SplineFactory.h"
+
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
 #include "TextureLoader.h"
 
-#include "ParticleDescriptor.h"
-#include "ParticleEmitter.h"
 #include "ParticleSystem.h"
-
 
 using namespace std;
 using namespace glm;
 
 World* World::instance;
-
 
 World::World()
 {
@@ -243,7 +241,6 @@ void World::Draw()
     // Draw Billboards
     mpBillboardList->Draw();
 
-
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
 
@@ -296,6 +293,11 @@ void World::LoadScene(const char * scene_path)
 				Animation* anim = new Animation();
 				anim->Load(iss);
 				mAnimation.push_back(anim);
+			}
+			else if (result == "spline")
+			{
+				SplineModel* spline = SplineFactory::LoadSpline(iss);
+				mModel.push_back(spline);
 			}
 			else if ( result.empty() == false && result[0] == '#')
 			{

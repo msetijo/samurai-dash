@@ -9,7 +9,6 @@
 
 #pragma once
 
-
 #include "ParsingHelper.h"
 #include "Billboard.h"
 #include <vector>
@@ -41,6 +40,7 @@ public:
     void AddParticleSystem(ParticleSystem* particleSystem);
     void RemoveParticleSystem(ParticleSystem* particleSystem);
     
+	Camera* GetCamera() { return mCamera[mCurrentCamera]; }
 private:
     static World* instance;
     

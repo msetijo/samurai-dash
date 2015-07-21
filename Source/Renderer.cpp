@@ -54,6 +54,7 @@ void Renderer::Initialize()
     // Somehow, glewInit triggers a glInvalidEnum... Let's ignore it
     glGetError();
     
+    
 	// Black background
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	
@@ -86,12 +87,14 @@ void Renderer::Initialize()
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
                             shaderPathPrefix + "BlueColor.fragmentshader")
                                );
-    
     sShaderProgramID.push_back(
                                LoadShaders(shaderPathPrefix + "Texture.vertexshader",
                                            shaderPathPrefix + "Texture.fragmentshader")
                                );
-
+	sShaderProgramID.push_back(
+								LoadShaders(shaderPathPrefix + "Spline.vertexshader",
+											shaderPathPrefix + "Spline.fragmentshader")
+							   );
 	sCurrentShader = 0;
 
 }

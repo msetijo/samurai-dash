@@ -53,6 +53,12 @@
     <None Include="..\Assets\Shaders\Texture.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Assets\Shaders\Spline.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Assets\Shaders\Spline.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\ParticleDescriptor.cpp">
@@ -103,6 +109,18 @@
     <ClCompile Include="..\Source\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\SplineModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Vertexes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\RendererHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SplineFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\ParticleDescriptor.h">
@@ -151,6 +169,21 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\ParsingHelper.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\SplineFactory.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\SplineModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Vertexes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\RendererHelper.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Shader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

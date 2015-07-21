@@ -17,7 +17,7 @@ public:
 	SphereModel(glm::vec3 size = glm::vec3(1.0f, 1.0f, 1.0f));
     virtual ~SphereModel(void);
 
-    virtual void Update(float dt);
+	virtual void Update(float dt);
     virtual void Draw();
     
 protected:
@@ -35,6 +35,7 @@ private:
     unsigned int mVertexArrayID;
     unsigned int mVertexBufferID;
     unsigned int numOfVertices;
+public:
 };
 
 
