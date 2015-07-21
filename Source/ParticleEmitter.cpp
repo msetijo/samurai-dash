@@ -31,7 +31,7 @@ glm::vec3 ParticleEmitter::GetRandomPosition()
 	
 	if (mpParent) {
 		mat4 W = mpParent->GetWorldMatrix();
-		return vec3(W[3][0], W[3][1], W[3][2]);
+		return vec3(W[3][0], W[3][1], W[3][2]) + mPosition;
 	}
 	else {
 		return mPosition;
