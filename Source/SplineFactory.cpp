@@ -1,13 +1,22 @@
+#include <iostream>
+
 #include "SplineFactory.h"
 
+using namespace std;
 using namespace glm;
 
-SplineModel* SplineFactory::LoadSpline(ci_istringstream& iss) {
+const ci_string SplineFactory::splineName = "Spline";
+
+SplineModel* SplineFactory::LoadSpline() {
 	
 	SplineModel* splineModel = new SplineModel();
 	SplineModel& spline = *splineModel;
 
-	spline.Load(iss);
+	ci_stringstream outName;
+	outName << "name = \"" << splineName << "\"";
+	ci_istringstream inName(outName.str());
+
+	spline.Load(inName);
 
 	if (!spline.HasControlPoints()) {
 		makeControlPoints(spline);

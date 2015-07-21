@@ -29,6 +29,12 @@
 using namespace std;
 using namespace glm;
 
+#if defined(PLATFORM_OSX)
+const char* World::sceneFile = "Scenes/SamuraiDash.scene";
+#else
+const char* World::sceneFile = "../Assets/Scenes/SamuraiDash.scene";
+#endif
+
 World* World::instance;
 
 World::World()
@@ -247,6 +253,21 @@ void World::Draw()
 	Renderer::EndFrame();
 }
 
+void World::LoadScene() {
+
+	// The world's scene for samurai-dash
+	// Do any complex dynamic initialization in here
+
+	// There will always be a spline in samurai-dash
+	SplineModel* spline = SplineFactory::LoadSpline();
+	mModel.push_back(spline);
+	
+	// ...
+
+	// Finally the static samurai-dash scene is loaded
+	LoadScene(sceneFile);
+}
+
 void World::LoadScene(const char * scene_path)
 {
 	// Using case-insensitive strings and streams for easier parsing
@@ -293,11 +314,6 @@ void World::LoadScene(const char * scene_path)
 				Animation* anim = new Animation();
 				anim->Load(iss);
 				mAnimation.push_back(anim);
-			}
-			else if (result == "spline")
-			{
-				SplineModel* spline = SplineFactory::LoadSpline(iss);
-				mModel.push_back(spline);
 			}
 			else if ( result.empty() == false && result[0] == '#')
 			{
