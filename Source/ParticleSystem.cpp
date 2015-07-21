@@ -86,19 +86,25 @@ void ParticleSystem::Update(float dt)
         // Step 2 : You can rotate the result in step 1 by an random angle from 0 to
         //          360 degrees about the original velocity vector
 
+		vec3 i = vec3(1, 0, 0);
+		vec3 j = vec3(0, 1, 0);
+		vec3 velocity = mpDescriptor->velocity;
+
 		float da = mpDescriptor->velocityDeltaAngle;
 
-		// should the first rotation always be about the z axis?
-		mat4 r1 = rotate(mat4(1.0f), EventManager::GetRandomFloat(-da, da), vec3(0,0,1.0f));
+		vec3 basis = abs(dot(velocity, i)) <= abs(dot(velocity, j)) ? i : j;
+		vec3 r1Axis = normalize(cross(velocity, basis));
 
-		mat4 r2 = rotate(mat4(1.0f), EventManager::GetRandomFloat(0, 360), mpDescriptor->velocity);
+		mat4 r1 = rotate(mat4(1.0f), EventManager::GetRandomFloat(-da, da), r1Axis);
 
-		vec4 randomHomogeneousVelocity = r2 * r1 * vec4(mpDescriptor->velocity, 1.0f);
+		mat4 r2 = rotate(mat4(1.0f), EventManager::GetRandomFloat(0, 360), velocity);
+
+		vec4 randomHomogeneousVelocity = r2 * r1 * vec4(velocity, 1.0f);
 		vec3 randomVelocity = vec3(randomHomogeneousVelocity);
 
 		newParticle->velocity = randomVelocity;
-        
-        World::GetInstance()->AddBillboard(&newParticle->billboard);
+
+		World::GetInstance()->AddBillboard(&newParticle->billboard);
     }
     
     
