@@ -1,7 +1,8 @@
-[Spline]
-name     = "Spline"
+# This is the scene file for samurai-dash, add any static items here (models, animations, particles, ...)
 
-# This should draw a coordinate system with 3 colored axes
+# <coordinate-system>
+# The following is the coordinate system from CoordinateSystem.scene
+# It is meant to be a reference point for development purposes.
 
 [Cube]
 name = "X-axis"
@@ -25,3 +26,5 @@ scaling = 1.0f 0.1f 0.1f
 name = "Origin"
 position = 0.0f 0.0f 0.0f
 scaling = 0.12f 0.12f 0.12f
+
+# </coordinate-system>

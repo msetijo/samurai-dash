@@ -59,6 +59,9 @@
     <None Include="..\Assets\Shaders\Spline.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Assets\Scenes\SamuraiDash.scene">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\ParticleDescriptor.cpp">

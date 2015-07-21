@@ -22,6 +22,8 @@ class ParticleSystem;
 class World
 {
 public:
+	static const char* sceneFile;
+
 	World();
 	~World();
 	
@@ -30,7 +32,10 @@ public:
 	void Update(float dt);
 	void Draw();
 
+	void World::LoadScene();
+
 	void LoadScene(const char * scene_path);
+
     Animation* FindAnimation(ci_string animName);
 	AnimationKey* FindAnimationKey(ci_string keyName);
 
@@ -41,6 +46,7 @@ public:
     void RemoveParticleSystem(ParticleSystem* particleSystem);
     
 	Camera* GetCamera() { return mCamera[mCurrentCamera]; }
+
 private:
     static World* instance;
     

@@ -13,7 +13,12 @@ class SplineFactoryPlaneDelegate : public SplineModelPlaneDelegate {
 class SplineFactory {
 
 public:
-	static SplineModel* LoadSpline(ci_istringstream& iss);
+	/**
+	 * The name of the loaded spline model
+	 */
+	static const ci_string splineName;
+
+	static SplineModel* LoadSpline();
 
 private:
 
