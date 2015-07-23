@@ -18,6 +18,7 @@ public:
 
 	virtual void Update(float dt);
 
+	virtual glm::vec3 GetPosition() const { return mPosition; };
 	virtual glm::mat4 GetViewMatrix() const;
 
 private:

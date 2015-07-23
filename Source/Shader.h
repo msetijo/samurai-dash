@@ -7,6 +7,8 @@
 
 #include "Vertexes.h"
 
+#include "Textures.h"
+
 class Shader {
 
 public:
@@ -18,6 +20,18 @@ public:
 		GLuint location = glGetUniformLocation(mId, name);
 		glUniformMatrix4fv(location, 1, GL_FALSE, &m[0][0]);
 	};
+
+	void SetTexture(const char* name, Texture2D& t, GLenum textureUnit) {
+		GLuint location = glGetUniformLocation(mId, name);
+		t.Bind(textureUnit);
+		glUniform1i(location, textureUnit - GL_TEXTURE0);
+	}
+
+	void SetTexture(const char* name, TextureCubemap& t, GLenum textureUnit) {
+		GLuint location = glGetUniformLocation(mId, name);
+		t.Bind(textureUnit);
+		glUniform1i(location, textureUnit - GL_TEXTURE0);
+	}
 
 	void SetVertexAttrib(VertexBuffer& vertex, GLuint index, GLint size, GLsizei stride, const GLvoid* offset) {
 		glEnableVertexAttribArray(index);

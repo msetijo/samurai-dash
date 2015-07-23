@@ -95,8 +95,11 @@ void Renderer::Initialize()
 								LoadShaders(shaderPathPrefix + "Spline.vertexshader",
 											shaderPathPrefix + "Spline.fragmentshader")
 							   );
+	sShaderProgramID.push_back(
+								LoadShaders(shaderPathPrefix + "Skybox.vertexshader",
+											shaderPathPrefix + "Skybox.fragmentshader")
+							  );
 	sCurrentShader = 0;
-
 }
 
 void Renderer::Shutdown()

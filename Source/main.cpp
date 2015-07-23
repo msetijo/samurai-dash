@@ -7,14 +7,6 @@
 // Copyright (c) 2014-2015 Concordia University. All rights reserved.
 //
 
-#include "Renderer.h"
-#include "World.h"
-#include "EventManager.h"
-#include "Billboard.h"
-#include "TextureLoader.h"
-
-#include <GLFW/glfw3.h>
-
 #if defined(WIN32)
 	#include <Windows.h>
 	#define SLEEP_FUNC(x) Sleep((x))
@@ -22,6 +14,14 @@
 	#include <unistd.h>
 	#define SLEEP_FUNC(x)	usleep((x)*1000)
 #endif
+
+#include "Renderer.h"
+#include "World.h"
+#include "EventManager.h"
+#include "Billboard.h"
+#include "TextureLoader.h"
+
+#include <GLFW/glfw3.h>
 
 #define FPS 60
 

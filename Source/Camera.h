@@ -14,11 +14,17 @@
 class Camera
 {
 public:
+	static const float fieldOfView;
+	static const float aspect;
+	static const float near;
+	static const float far;
+
 	Camera();
 	virtual ~Camera();
 
 	virtual void Update(float dt) = 0;
 
+	virtual glm::vec3 GetPosition() const = 0;
 	virtual glm::mat4 GetViewMatrix() const = 0;
 	virtual glm::mat4 GetProjectionMatrix() const;
 	glm::mat4 GetViewProjectionMatrix() const;

@@ -106,6 +106,8 @@
     <None Include="..\Assets\Shaders\BlueColor.fragmentshader" />
     <None Include="..\Assets\Shaders\PathLines.fragmentshader" />
     <None Include="..\Assets\Shaders\PathLines.vertexshader" />
+    <None Include="..\Assets\Shaders\Skybox.fragmentshader" />
+    <None Include="..\Assets\Shaders\Skybox.vertexshader" />
     <None Include="..\Assets\Shaders\SolidColor.fragmentshader" />
     <None Include="..\Assets\Shaders\SolidColor.vertexshader" />
     <None Include="..\Assets\Shaders\Spline.fragmentshader" />
@@ -127,16 +129,19 @@
     <ClCompile Include="..\Source\ParticleSystem.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
     <ClCompile Include="..\Source\RendererHelper.cpp" />
+    <ClCompile Include="..\Source\SkyboxModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\SplineFactory.cpp" />
     <ClCompile Include="..\Source\SplineModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\TextureLoader.cpp" />
+    <ClCompile Include="..\Source\Textures.cpp" />
     <ClCompile Include="..\Source\Vertexes.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Animation.h" />
+    <ClInclude Include="..\Source\AssetsDir.h" />
     <ClInclude Include="..\Source\Billboard.h" />
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
@@ -150,17 +155,25 @@
     <ClInclude Include="..\Source\Renderer.h" />
     <ClInclude Include="..\Source\RendererHelper.h" />
     <ClInclude Include="..\Source\Shader.h" />
+    <ClInclude Include="..\Source\SkyboxModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\SplineFactory.h" />
     <ClInclude Include="..\Source\SplineModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\TextureLoader.h" />
+    <ClInclude Include="..\Source\Textures.h" />
     <ClInclude Include="..\Source\Vertexes.h" />
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Textures\BillboardTest.bmp" />
     <Image Include="..\Assets\Textures\Particle.png" />
+    <Image Include="..\Assets\Textures\Skybox\Nightsky\back.jpg" />
+    <Image Include="..\Assets\Textures\Skybox\Nightsky\bottom.jpg" />
+    <Image Include="..\Assets\Textures\Skybox\Nightsky\front.jpg" />
+    <Image Include="..\Assets\Textures\Skybox\Nightsky\left.jpg" />
+    <Image Include="..\Assets\Textures\Skybox\Nightsky\right.jpg" />
+    <Image Include="..\Assets\Textures\Skybox\Nightsky\top.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

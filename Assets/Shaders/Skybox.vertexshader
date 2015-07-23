@@ -1,0 +1,23 @@
+#version 330 core
+
+layout(location = 0) in vec3 vertexPosition_modelspace;
+layout(location = 1) in vec3 vertexNormal_modelspace; // not used, just there to make the cube model happy
+layout(location = 2) in vec3 vertexColor; // not used, just there to make the cube model happy
+
+uniform mat4 ViewProjectionTransform;
+uniform mat4 WorldTransform;
+
+out	vec3 textCord0;
+
+void main() {
+	
+	vec4 position = ViewProjectionTransform * WorldTransform * vec4(vertexPosition_modelspace,1);
+
+	// For position we still want x and y but now z = w = 1.
+	// In NDC z = 1 is the furthest z value.
+	// This means that our skybox only renders onto pixels that are left blank.
+	gl_Position = position.xyww;
+
+	// The texture coordinate must be a vec3 for cubemap types, see fragment shader.
+	textCord0 = vertexPosition_modelspace;
+}

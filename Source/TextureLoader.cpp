@@ -8,18 +8,30 @@
 
 #include "TextureLoader.h"
 
-#include <cassert>
 #include <GL/glew.h>
+#include <cassert>
 
-#include <FreeImageIO.h>
+FreeImage::FreeImage(const char* imagePath) {
 
+	// Load image using the Free Image library
+	FREE_IMAGE_FORMAT format = FreeImage_GetFileType(imagePath, 0);
+	FIBITMAP* image = FreeImage_Load(format, imagePath);
+	FIBITMAP* image32bits = FreeImage_ConvertTo32Bits(image);
 
-int TextureLoader::LoadTexture(const char * imagepath)
+	mImage = image;
+	mImage32 = image32bits;
+}
+
+FreeImage::~FreeImage() {
+
+	// Free images
+	FreeImage_Unload(mImage);
+	FreeImage_Unload(mImage32);
+}
+
+int TextureLoader::LoadTexture(const char * imagePath)
 {    
-    // Load image using the Free Image library
-    FREE_IMAGE_FORMAT format = FreeImage_GetFileType(imagepath, 0);
-    FIBITMAP* image = FreeImage_Load(format, imagepath);
-    FIBITMAP* image32bits = FreeImage_ConvertTo32Bits(image);
+	FreeImage image(imagePath);
     
     // Get an available texture index from OpenGL
     GLuint texture = 0;
@@ -32,16 +44,12 @@ int TextureLoader::LoadTexture(const char * imagepath)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
     // Retrieve width and hight
-    int width = FreeImage_GetWidth(image32bits);
-    int height = FreeImage_GetHeight(image32bits);
+	int width = image.GetWidth();
+	int height = image.GetHeight();
     
     // This will upload the texture to the GPU memory
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height,
-                 0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(image32bits));
-    
-    // Free images
-    FreeImage_Unload(image);
-    FreeImage_Unload(image32bits);
+                 0, GL_BGRA, GL_UNSIGNED_BYTE, image.GetData());
  
     return texture;
 }
