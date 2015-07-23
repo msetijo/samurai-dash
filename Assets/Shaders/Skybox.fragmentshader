@@ -1,0 +1,18 @@
+#version 330 core
+
+in vec3 textCord0;
+
+uniform samplerCube TextureCubemap;
+
+out vec4 color;
+
+void main() {
+
+	// The y coordinate is flipped because a cubemap expects textures
+	// To be flipped but our textures are right side up.
+	vec3 textCord1 = vec3(textCord0.x, -textCord0.y, textCord0.z);
+
+	// From a cubemap we use a vec3 to access the right face 
+	// and then the right U and V on that face
+	color = texture(TextureCubemap, textCord1);
+}

@@ -19,6 +19,7 @@
 #include "Animation.h"
 #include "Billboard.h"
 #include "SplineFactory.h"
+#include "SkyboxModel.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -266,6 +267,9 @@ void World::LoadScene() {
 
 	// Finally the static samurai-dash scene is loaded
 	LoadScene(sceneFile);
+
+	SkyboxModel* skybox = new SkyboxModel();
+	mModel.push_back(skybox);
 }
 
 void World::LoadScene(const char * scene_path)

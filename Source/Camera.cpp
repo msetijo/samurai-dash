@@ -12,6 +12,11 @@
 
 using namespace glm;
 
+const float Camera::fieldOfView = 45.0f;
+const float Camera::aspect = 4.0f / 3.0f;
+const float Camera::near = 0.1f;
+const float Camera::far = 100.0f;
+
 Camera::Camera()
 {
 }
@@ -36,5 +41,5 @@ mat4 Camera::GetViewProjectionMatrix() const
 
 mat4 Camera::GetProjectionMatrix() const
 {
-	return perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+	return perspective(fieldOfView, aspect, near, far);
 }
