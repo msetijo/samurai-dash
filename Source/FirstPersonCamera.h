@@ -27,6 +27,7 @@ private:
 	float mVerticalAngle;   // vertical angle
 
 	float mSpeed;			// World units per second
+	float mSpeedMultiplier; // How much faster to go when needed
 	float mAngularSpeed;    // Degrees per pixel
 
 	glm::vec3 mLookAt;

@@ -18,7 +18,14 @@
 
 using namespace glm;
 
-FirstPersonCamera::FirstPersonCamera(glm::vec3 position) :  Camera(), mPosition(position), mLookAt(0.0f, 0.0f, -1.0f), mHorizontalAngle(90.0f), mVerticalAngle(0.0f), mSpeed(5.0f), mAngularSpeed(2.5f)
+FirstPersonCamera::FirstPersonCamera(glm::vec3 position) : Camera(), 
+	mPosition(position), 
+	mLookAt(0.0f, 0.0f, -1.0f), 
+	mHorizontalAngle(90.0f), 
+	mVerticalAngle(0.0f), 
+	mSpeed(5.0f), 
+	mSpeedMultiplier(4.0f), 
+	mAngularSpeed(2.5f)
 {
 }
 
@@ -60,26 +67,32 @@ void FirstPersonCamera::Update(float dt)
 	vec3 sideVector = glm::cross(mLookAt, vec3(0.0f, 1.0f, 0.0f));
 	glm::normalize(sideVector);
 
+	bool shiftPressed = glfwGetKey(EventManager::GetWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS;
+
 	// A S D W for motion along the camera basis vectors
+	vec3 direction;
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W ) == GLFW_PRESS)
 	{
-		mPosition += mLookAt * dt * mSpeed;
+		direction = mLookAt;
 	}
 
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_S ) == GLFW_PRESS)
 	{
-		mPosition -= mLookAt * dt * mSpeed;
+		direction = -mLookAt;
 	}
 
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_D ) == GLFW_PRESS)
 	{
-		mPosition += sideVector * dt * mSpeed;
+		direction += sideVector;
 	}
 
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A ) == GLFW_PRESS)
 	{
-		mPosition -= sideVector * dt * mSpeed;
+		direction -= sideVector;
 	}
+
+	float speed = mSpeed * (shiftPressed ? mSpeedMultiplier : 1);
+	mPosition += direction * dt * speed;
 }
 
 glm::mat4 FirstPersonCamera::GetViewMatrix() const
