@@ -138,6 +138,7 @@
     <ClCompile Include="..\Source\Textures.cpp" />
     <ClCompile Include="..\Source\Vertexes.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
+    <ClCompile Include="Obstacles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Animation.h" />
