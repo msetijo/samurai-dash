@@ -64,7 +64,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../ThirdParty/FreeImage-3170/lib/win32;../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110</AdditionalLibraryDirectories>
-      <AdditionalDependencies>FreeImage.lib;opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>FreeImage.lib;opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <BuildLog>
       <Path>
@@ -88,7 +88,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>../ThirdParty/FreeImage-3170/lib/win32;../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110</AdditionalLibraryDirectories>
-      <AdditionalDependencies>FreeImage.lib;opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>FreeImage.lib;opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
@@ -174,6 +174,9 @@
     <Image Include="..\Assets\Textures\Skybox\Nightsky\left.jpg" />
     <Image Include="..\Assets\Textures\Skybox\Nightsky\right.jpg" />
     <Image Include="..\Assets\Textures\Skybox\Nightsky\top.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Assets\Sounds\RainbowRoad.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

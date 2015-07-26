@@ -23,6 +23,9 @@
 
 #include <GLFW/glfw3.h>
 
+#include <Windows.h>
+#include <MMSystem.h>
+
 #define FPS 60
 
 int main(int argc, char*argv[])
@@ -33,6 +36,11 @@ int main(int argc, char*argv[])
 	World world;    
     
 	world.LoadScene();
+
+	// If Running on Windows Then Play Background Music
+	#if defined(WIN32)
+		PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	#endif
 
 //	if (argc > 1)
 //	{
