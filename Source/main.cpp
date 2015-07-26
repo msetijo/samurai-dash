@@ -32,31 +32,33 @@ int main(int argc, char*argv[])
 
 	World world;    
     
-	world.LoadScene();
+	//world.LoadScene();
 
-//	if (argc > 1)
-//	{
-//		world.LoadScene(argv[1]);
-//	}
-//	else
-//	{
-//		// TODO - You can alternate between different scenes for testing different things
-//		// Static Scene contains no animation
-//		// Animated Scene does
-//#if defined(PLATFORM_OSX)		
-////		world.LoadScene("Scenes/AnimatedSceneWithParticles.scene");
+	if (argc > 1)
+	{
+		world.LoadScene(argv[1]);
+	}
+	else
+	{
+		// TODO - You can alternate between different scenes for testing different things
+		// Static Scene contains no animation
+		// Animated Scene does
+#if defined(PLATFORM_OSX)		
+//		world.LoadScene("Scenes/AnimatedSceneWithParticles.scene");
 //		world.LoadScene("Scenes/Spline.scene");
-////		world.LoadScene("Scenes/AnimatedScene.scene");
-////		world.LoadScene("Scenes/StaticScene.scene");
-////		world.LoadScene("Scenes/CoordinateSystem.scene");
-//#else
-////		world.LoadScene("../Assets/Scenes/AnimatedSceneWithParticles.scene");
-////		world.LoadScene("../Assets/Scenes/AnimatedScene.scene");
+//		world.LoadScene("Scenes/AnimatedScene.scene");
+//		world.LoadScene("Scenes/StaticScene.scene");
+//		world.LoadScene("Scenes/CoordinateSystem.scene");
+		world.LoadScene("Scenes/Discoball.scene");
+#else
+//		world.LoadScene("../Assets/Scenes/AnimatedSceneWithParticles.scene");
+//		world.LoadScene("../Assets/Scenes/AnimatedScene.scene");
 //		world.LoadScene("../Assets/Scenes/Spline.scene");
-////		world.LoadScene("../Assets/Scenes/StaticScene.scene");
-////		world.LoadScene("../Assets/Scenes/CoordinateSystem.scene");
-//#endif
-//	}
+//		world.LoadScene("../Assets/Scenes/StaticScene.scene");
+//		world.LoadScene("../Assets/Scenes/CoordinateSystem.scene");
+		world.LoadScene("../Assets/Scenes/Discoball.scene");
+#endif
+	}
 
 	double fps = 1.0f / FPS;
 

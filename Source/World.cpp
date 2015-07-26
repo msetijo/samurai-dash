@@ -20,6 +20,7 @@
 #include "Billboard.h"
 #include "SplineFactory.h"
 #include "SkyboxModel.h"
+#include "Discoball.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -318,6 +319,12 @@ void World::LoadScene(const char * scene_path)
 				Animation* anim = new Animation();
 				anim->Load(iss);
 				mAnimation.push_back(anim);
+			}
+			else if (result == "discoball") {
+				
+				Discoball* db = new Discoball();
+				db->Load(iss);
+				mModel.push_back(db);
 			}
 			else if ( result.empty() == false && result[0] == '#')
 			{
