@@ -9,14 +9,13 @@
 
 #include "SphereModel.h"
 #include "Renderer.h"
-#include <GL/glew.h>
 
 #include <algorithm>
 
 using namespace glm;
 using namespace std;
 
-SphereModel::SphereModel(vec3 size, forEachVertex fev) : Model()
+SphereModel::SphereModel(vec3 size, GLenum drawMode, forEachVertex fev) : Model()
 {
 	Vertex* vertexBuffer = new Vertex[sVertexBufferSize];
 	copy(sVertexBuffer, sVertexBuffer + sVertexBufferSize, vertexBuffer);
@@ -31,6 +30,8 @@ SphereModel::SphereModel(vec3 size, forEachVertex fev) : Model()
     glGenBuffers(1, &mVertexBufferID);
     glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
     glBufferData(GL_ARRAY_BUFFER, sVertexBufferSize * sizeof(Vertex), vertexBuffer, GL_STATIC_DRAW);
+
+	mDrawMode = drawMode;
 
 	delete vertexBuffer;
 }
@@ -92,7 +93,7 @@ void SphereModel::Draw()
                         );
 
     // Draw the triangles !
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, mNumOfVertices);
+	glDrawArrays(mDrawMode, 0, mNumOfVertices);
 
     glDisableVertexAttribArray(2);
     glDisableVertexAttribArray(1);

@@ -10,6 +10,7 @@
 #pragma once
 
 #include "Model.h"
+#include <GL/glew.h>
 
 class SphereModel : public Model
 {
@@ -27,7 +28,7 @@ public:
 	static const Vertex sVertexBuffer[];
 	static const int sVertexBufferSize;
 
-	SphereModel(glm::vec3 size = glm::vec3(1.0f, 1.0f, 1.0f), forEachVertex fev = nullptr);
+	SphereModel(glm::vec3 size = glm::vec3(1.0f, 1.0f, 1.0f), GLenum drawMode = GL_TRIANGLE_STRIP, forEachVertex fev = nullptr);
     virtual ~SphereModel(void);
 
 	virtual void Update(float dt);
@@ -41,6 +42,7 @@ private:
     unsigned int mVertexArrayID;
     unsigned int mVertexBufferID;
 	unsigned int mNumOfVertices;
+	GLenum mDrawMode;
 public:
 };
 
