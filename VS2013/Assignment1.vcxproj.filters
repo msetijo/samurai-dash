@@ -24,6 +24,9 @@
     <Filter Include="Resource Files\Textures\Skybox\Nightsky">
       <UniqueIdentifier>{6cc16fae-441c-4b0c-91dd-f965409f6fbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Sounds">
+      <UniqueIdentifier>{f641e89f-aeb2-4858-af9e-a68c9faf4a5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Assets\Shaders\BlueColor.fragmentshader">
@@ -242,5 +245,10 @@
     <Image Include="..\Assets\Textures\Skybox\Nightsky\bottom.jpg">
       <Filter>Resource Files\Textures\Skybox\Nightsky</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Assets\Sounds\RainbowRoad.wav">
+      <Filter>Resource Files\Sounds</Filter>
+    </Media>
   </ItemGroup>
 </Project>
