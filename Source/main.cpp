@@ -9,6 +9,7 @@
 
 #if defined(WIN32)
 	#include <Windows.h>
+	#include <MMSystem.h>
 	#define SLEEP_FUNC(x) Sleep((x))
 #else
 	#include <unistd.h>
@@ -22,9 +23,6 @@
 #include "TextureLoader.h"
 
 #include <GLFW/glfw3.h>
-
-#include <Windows.h>
-#include <MMSystem.h>
 
 #define FPS 60
 
