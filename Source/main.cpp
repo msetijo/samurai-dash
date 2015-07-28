@@ -22,6 +22,14 @@
 #include "Billboard.h"
 #include "TextureLoader.h"
 
+#include "tiny_obj_loader.h"
+#include "AssetsDir.h"
+#include <vector>
+#include <string>
+
+using namespace std;
+using namespace tinyobj;
+
 #include <GLFW/glfw3.h>
 
 #define FPS 60
@@ -39,6 +47,13 @@ int main(int argc, char*argv[])
 	#if defined(WIN32)
 		PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 	#endif
+
+		vector<shape_t> shapes;
+		vector<material_t> materials;
+
+		string name = LoadObj(shapes, materials, HOLY_SHEEP, HOLY_SHEEP_MATERIAL);
+
+
 
 //	if (argc > 1)
 //	{

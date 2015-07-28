@@ -27,6 +27,9 @@
     <Filter Include="Resource Files\Sounds">
       <UniqueIdentifier>{f641e89f-aeb2-4858-af9e-a68c9faf4a5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Models">
+      <UniqueIdentifier>{88a9a53b-bed6-41b3-9047-a8a370ae47ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Assets\Shaders\BlueColor.fragmentshader">
@@ -145,6 +148,9 @@
     <ClCompile Include="..\Source\Textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\tiny_obj_loader.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\ParticleDescriptor.h">
@@ -217,6 +223,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\AssetsDir.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\tiny_obj_loader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
