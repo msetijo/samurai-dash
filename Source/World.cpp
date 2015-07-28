@@ -30,11 +30,7 @@
 using namespace std;
 using namespace glm;
 
-#if defined(PLATFORM_OSX)
-const char* World::sceneFile = "Scenes/SamuraiDash.scene";
-#else
 const char* World::sceneFile = "../Assets/Scenes/SamuraiDash.scene";
-#endif
 
 World* World::instance;
 
@@ -50,13 +46,9 @@ World::World()
 
     
     // TODO: You can play with different textures by changing the billboardTest.bmp to another texture
-#if defined(PLATFORM_OSX)
-//    int billboardTextureID = TextureLoader::LoadTexture("Textures/BillboardTest.bmp");
-    int billboardTextureID = TextureLoader::LoadTexture("Textures/Particle.png");
-#else
-//    int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
+	// int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
     int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/Particle.png");
-#endif
+
     assert(billboardTextureID != 0);
 
     mpBillboardList = new BillboardList(2048, billboardTextureID);

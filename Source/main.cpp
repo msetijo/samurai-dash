@@ -7,14 +7,9 @@
 // Copyright (c) 2014-2015 Concordia University. All rights reserved.
 //
 
-#if defined(WIN32)
-	#include <Windows.h>
-	#include <MMSystem.h>
-	#define SLEEP_FUNC(x) Sleep((x))
-#else
-	#include <unistd.h>
-	#define SLEEP_FUNC(x)	usleep((x)*1000)
-#endif
+#include <Windows.h>
+#include <MMSystem.h>
+#define SLEEP_FUNC(x) Sleep((x))
 
 #include "Renderer.h"
 #include "World.h"
@@ -36,9 +31,7 @@ int main(int argc, char*argv[])
 	world.LoadScene();
 
 	// If Running on Windows Then Play Background Music
-	#if defined(WIN32)
-		PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
-	#endif
+	PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
 //	if (argc > 1)
 //	{
@@ -49,18 +42,11 @@ int main(int argc, char*argv[])
 //		// TODO - You can alternate between different scenes for testing different things
 //		// Static Scene contains no animation
 //		// Animated Scene does
-//#if defined(PLATFORM_OSX)		
-////		world.LoadScene("Scenes/AnimatedSceneWithParticles.scene");
-//		world.LoadScene("Scenes/Spline.scene");
-////		world.LoadScene("Scenes/AnimatedScene.scene");
-////		world.LoadScene("Scenes/StaticScene.scene");
-////		world.LoadScene("Scenes/CoordinateSystem.scene");
-//#else
-////		world.LoadScene("../Assets/Scenes/AnimatedSceneWithParticles.scene");
-////		world.LoadScene("../Assets/Scenes/AnimatedScene.scene");
+//		world.LoadScene("../Assets/Scenes/AnimatedSceneWithParticles.scene");
+//		world.LoadScene("../Assets/Scenes/AnimatedScene.scene");
 //		world.LoadScene("../Assets/Scenes/Spline.scene");
-////		world.LoadScene("../Assets/Scenes/StaticScene.scene");
-////		world.LoadScene("../Assets/Scenes/CoordinateSystem.scene");
+//		world.LoadScene("../Assets/Scenes/StaticScene.scene");
+//		world.LoadScene("../Assets/Scenes/CoordinateSystem.scene");
 //#endif
 //	}
 
