@@ -3,5 +3,7 @@
 **/*.suo
 **/*.log
 Build/
-Bin/
+Bin/*.exe
+Bin/*.ilk
+Bin/*.pdb
 .idea/

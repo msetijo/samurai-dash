@@ -136,7 +136,7 @@ void ParticleSystem::Update(float dt)
 			p->billboard.color = mpDescriptor->midColor;
 		}
 		else if (p->currentTime <= p->lifeTime) { // End
-			float c = p->currentTime - (p->lifeTime - mpDescriptor->fadeOutTime) / mpDescriptor->fadeOutTime;
+			float c = ( p->currentTime - (p->lifeTime - mpDescriptor->fadeOutTime) ) / mpDescriptor->fadeOutTime;			
 			p->billboard.color = mix(mpDescriptor->midColor, mpDescriptor->endColor, c);
 		}
 
