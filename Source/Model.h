@@ -10,6 +10,7 @@
 #pragma once
 
 #include "ParsingHelper.h"
+#include "RealTimeCollisionDetection.h"
 
 #include <vector>
 
@@ -41,6 +42,8 @@ public:
 	float     GetRotationAngle() const	{ return mRotationAngleInDegrees; }
     ci_string GetName()                 { return mName; }
 
+	BoundingVolume& GetBoundingVolume() { return mBoundingVolume; }
+
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token) = 0;
 
@@ -49,6 +52,8 @@ protected:
 	glm::vec3 mScaling;
 	glm::vec3 mRotationAxis;
 	float     mRotationAngleInDegrees;
+
+	BoundingVolume mBoundingVolume;
 
     // Makes the model follow a list of Animation Keys so it's world transform changes over time
     Animation* mAnimation;

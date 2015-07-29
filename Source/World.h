@@ -15,6 +15,7 @@
 
 class Camera;
 class Model;
+class PlayerModel;
 class Animation;
 class AnimationKey;
 class ParticleSystem;
@@ -47,7 +48,12 @@ public:
     
 	Camera* GetCamera() { return mCamera[mCurrentCamera]; }
 
+	PlayerModel* GetPlayer() { return mPlayerModel; };
+
 private:
+
+	void UpdateCollision(float dt);
+
     static World* instance;
     
 	std::vector<Model*> mModel;
@@ -58,4 +64,6 @@ private:
 	unsigned int mCurrentCamera;
 
     BillboardList* mpBillboardList;
+
+	PlayerModel* mPlayerModel;
 };

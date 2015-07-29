@@ -28,10 +28,10 @@ int main(int argc, char*argv[])
 
 	World world;    
     
-	world.LoadScene();
+	// world.LoadScene();
 
 	// If Running on Windows Then Play Background Music
-	PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	// PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
 //	if (argc > 1)
 //	{
@@ -47,6 +47,7 @@ int main(int argc, char*argv[])
 //		world.LoadScene("../Assets/Scenes/Spline.scene");
 //		world.LoadScene("../Assets/Scenes/StaticScene.scene");
 //		world.LoadScene("../Assets/Scenes/CoordinateSystem.scene");
+		world.LoadScene("../Assets/Scenes/CollisionDemo.scene");
 //#endif
 //	}
 

@@ -100,6 +100,7 @@
   <ItemGroup>
     <None Include="..\Assets\Scenes\AnimatedScene.scene" />
     <None Include="..\Assets\Scenes\AnimatedSceneWithParticles.scene" />
+    <None Include="..\Assets\Scenes\CollisionDemo.scene" />
     <None Include="..\Assets\Scenes\CoordinateSystem.scene" />
     <None Include="..\Assets\Scenes\SamuraiDash.scene" />
     <None Include="..\Assets\Scenes\StaticScene.scene" />
@@ -127,6 +128,8 @@
     <ClCompile Include="..\Source\ParticleDescriptor.cpp" />
     <ClCompile Include="..\Source\ParticleEmitter.cpp" />
     <ClCompile Include="..\Source\ParticleSystem.cpp" />
+    <ClCompile Include="..\Source\PlayerModel.cpp" />
+    <ClCompile Include="..\Source\RealTimeCollisionDetection.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
     <ClCompile Include="..\Source\RendererHelper.cpp" />
     <ClCompile Include="..\Source\SkyboxModel.cpp" />
@@ -137,6 +140,8 @@
     <ClCompile Include="..\Source\TextureLoader.cpp" />
     <ClCompile Include="..\Source\Textures.cpp" />
     <ClCompile Include="..\Source\Vertexes.cpp" />
+    <ClCompile Include="..\Source\World-Load.cpp" />
+    <ClCompile Include="..\Source\World-Update.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +157,8 @@
     <ClInclude Include="..\Source\ParticleDescriptor.h" />
     <ClInclude Include="..\Source\ParticleEmitter.h" />
     <ClInclude Include="..\Source\ParticleSystem.h" />
+    <ClInclude Include="..\Source\PlayerModel.h" />
+    <ClInclude Include="..\Source\RealTimeCollisionDetection.h" />
     <ClInclude Include="..\Source\Renderer.h" />
     <ClInclude Include="..\Source\RendererHelper.h" />
     <ClInclude Include="..\Source\Shader.h" />

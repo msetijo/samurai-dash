@@ -1,0 +1,39 @@
+[AnimationKey]
+name = "playerStart"
+position = 0 1.5 10
+
+[AnimationKey]
+name = "playerEnd"
+position = 0 1.5 -10
+
+[Animation]
+name = "move-on-z-axis"
+key = "playerStart" time = 0.0f
+key = "playerEnd" time = 5.0f
+
+[player]
+name = "Player"
+animation = "move-on-z-axis"
+
+[AnimationKey]
+name = "obstacleStart"
+position = 8 1.5 10
+
+[AnimationKey]
+name = "obstacleEnd"
+position = -8 1.5 0
+
+[Animation]
+name = "move-on-x-axis"
+key = "obstacleStart" time = 0.0f
+key = "obstacleEnd" time = 2.5f
+
+[cube]
+name = "Obstacle"
+animation = "move-on-x-axis"
+
+[Cube]
+name     = "Ground"
+scaling  = 100.0 1.0 100.0
+position = 0.0 -0.5 0.0
+rotation = 0.0 0.0 1.0 0.0
