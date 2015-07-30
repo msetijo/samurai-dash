@@ -90,16 +90,18 @@ void World::Update(float dt)
 
 void World::UpdateCollision(float dt) {
 
+	static int ctr = 1;
+
 	if (!mPlayerModel) { return; }
 
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
 		if (mPlayerModel == *it) { continue; }
 
-		bool r = TestBoundingVolumes(mPlayerModel->GetBoundingVolume(), (*it)->GetBoundingVolume());
+		bool r = TestBoundingVolumes(*mPlayerModel, **it);
 		
 		if (r) {
-			cout << "collision!" << endl;
+			cout << "collision " << ctr++ << "!" << endl;
 		}
 	}
 }

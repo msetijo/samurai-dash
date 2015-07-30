@@ -1,5 +1,7 @@
 #include "RealTimeCollisionDetection.h"
 
+#include "Model.h"
+
 #include <iostream>
 
 using namespace rtcd;
@@ -12,7 +14,26 @@ const char* BoundingVolumeTypeToStr[] = {
 	"CAPSULE"
 };
 
-bool TestBoundingVolumes(const BoundingVolume& b1, const BoundingVolume& b2) {
+void BoundingVolume::setCapsule(rtcd::Capsule* capsule) { 
+	
+	deleteData(); 
+	mBoundingVolumeType = CAPSULE; 
+	mData = (void*)capsule; 
+}
+
+void BoundingVolume::deleteData() {
+
+	switch (mBoundingVolumeType) {
+	case CAPSULE:
+		delete (Capsule*)mData;
+		break;
+	}
+}
+
+bool TestBoundingVolumes(Model& m1, Model& m2) {
+
+	BoundingVolume& b1 = m1.GetBoundingVolume();
+	BoundingVolume& b2 = m2.GetBoundingVolume();
 
 	BoundingVolumeType bt1 = b1.GetBoundingVolumeType();
 	BoundingVolumeType bt2 = b2.GetBoundingVolumeType();
@@ -26,7 +47,7 @@ bool TestBoundingVolumes(const BoundingVolume& b1, const BoundingVolume& b2) {
 		const Capsule& c1 = *((Capsule*) b1.GetData());
 		const Capsule& c2 = *((Capsule*) b2.GetData());
 
-		return TestCapsuleCapsule(c1, c2);
+		return TestCapsuleCapsule(c1.transform(m1.GetWorldMatrix()), c2.transform(m2.GetWorldMatrix()));
 	}
 
 	cout << "TestBoundingVolumes intersection of unsupported pairing " 
@@ -35,6 +56,15 @@ bool TestBoundingVolumes(const BoundingVolume& b1, const BoundingVolume& b2) {
 
 	return false;
 }
+
+Capsule Capsule::transform(const mat4& M) const {
+	return { 
+		vec3(M * vec4(a,1)),
+		vec3(M * vec4(b, 1)),
+		r
+	};
+}
+	
 
 bool rtcd::TestCapsuleCapsule(const Capsule& capsule1, const Capsule& capsule2) {
 

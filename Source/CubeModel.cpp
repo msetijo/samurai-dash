@@ -77,10 +77,6 @@ CubeModel::CubeModel(vec3 size) : Model()
 	glGenBuffers(1, &mVertexBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);
-
-	// FIXME - temporary collision test setup
-	mCapsule = { vec3(0, 1, 0), vec3(0, -1, 0), 1 };
-	mBoundingVolume.setCapsule(mCapsule);
 }
 
 CubeModel::~CubeModel()

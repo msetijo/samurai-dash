@@ -3,6 +3,8 @@
 
 #include <glm/glm.hpp>
 
+class Model;
+
 /**
  * A collection of collision detection functions and structs from
  *
@@ -18,6 +20,8 @@ namespace rtcd {
 		glm::vec3 a; // Medial line segment start point
 		glm::vec3 b; // Medial line segment endpoint
 		float r; // Radius
+
+		Capsule transform(const glm::mat4& M) const;
 	};
 
 	/**
@@ -49,12 +53,17 @@ class BoundingVolume {
 
 public:
 	BoundingVolume() : mBoundingVolumeType(NIL_BV), mData(nullptr) {};
+	~BoundingVolume() { deleteData(); }
 
 	BoundingVolumeType GetBoundingVolumeType() const { return mBoundingVolumeType; }
 	void* GetData() const { return mData; }
 
-	void setCapsule(const rtcd::Capsule& capsule) { mBoundingVolumeType = CAPSULE; mData = (void*) &capsule; }
+	void setCapsule(rtcd::Capsule* capsule);
+
 private:
+
+	void deleteData();
+
 	BoundingVolumeType mBoundingVolumeType;
 	void* mData;
 };
@@ -62,6 +71,6 @@ private:
 /**
 * Returns true if two bounding volumes intersect, otherwise false
 */
-bool TestBoundingVolumes(const BoundingVolume& b1, const BoundingVolume& b2);
+bool TestBoundingVolumes(Model& m1, Model& m2);
 
 #endif
