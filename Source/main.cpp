@@ -52,6 +52,9 @@ int main(int argc, char*argv[])
 //	}
 
 	double fps = 1.0f / FPS;
+	double dtStep = fps;
+	
+	double dtAcc = 0;
 
 	// Main Loop
 	do
@@ -63,10 +66,22 @@ int main(int argc, char*argv[])
 
 		// Update World
 		float dt = EventManager::GetFrameTime();
-		world.Update(dt);
+
+		bool draw = false;
+
+		// Apply fixed delta time steps to each world update,
+		// and drawing can be done if at least 1 world update was done.
+		dtAcc += dt;
+		while (dtAcc >= dtStep) {
+			dtAcc -= dtStep;
+			world.Update(dtStep);
+			draw = true;
+		}
 
 		// Draw World
-		world.Draw();
+		if (draw) {
+			world.Draw();
+		}
 
 		// Each frame should be "fps" seconds long.
 		// If updating and rendering took less than fps seconds long then sleep for the remainder.

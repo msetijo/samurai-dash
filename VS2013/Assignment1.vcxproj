@@ -120,7 +120,6 @@
     <ClCompile Include="..\Source\Animation.cpp" />
     <ClCompile Include="..\Source\Billboard.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
-    <ClCompile Include="..\Source\CapsuleModel.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
@@ -150,7 +149,6 @@
     <ClInclude Include="..\Source\AssetsDir.h" />
     <ClInclude Include="..\Source\Billboard.h" />
     <ClInclude Include="..\Source\Camera.h" />
-    <ClInclude Include="..\Source\CapsuleModel.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
