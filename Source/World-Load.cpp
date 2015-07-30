@@ -7,27 +7,41 @@
 #include "Animation.h"
 #include "SplineFactory.h"
 #include "SkyboxModel.h"
+#include "CapsuleModel.h"
+
+#include "RealTimeCollisionDetection.h"
 
 using namespace std;
+using namespace glm;
+using namespace rtcd;
 
 const char* World::sceneFile = "../Assets/Scenes/SamuraiDash.scene";
 
 void World::LoadScene() {
 
-	// The world's scene for samurai-dash
-	// Do any complex dynamic initialization in here
+	LoadScene("../Assets/Scenes/CoordinateSystem.scene");
 
-	// There will always be a spline in samurai-dash
-	SplineModel* spline = SplineFactory::LoadSpline();
-	mModel.push_back(spline);
+	// Capsule c = { vec3(0, 1, 0), vec3(0, -1, 0), 1 };
+	// Capsule c = { vec3(1, 1, 0), vec3(-1, -1, 0), 1 };
+	Capsule c = { vec3(1, 0, 0), vec3(-1, 0, 0), 1 };
 
-	// ...
+	CapsuleModel* cm = new CapsuleModel(c);
+	mModel.push_back(cm);
 
-	// Finally the static samurai-dash scene is loaded
-	LoadScene(sceneFile);
+	//// The world's scene for samurai-dash
+	//// Do any complex dynamic initialization in here
 
-	SkyboxModel* skybox = new SkyboxModel();
-	mModel.push_back(skybox);
+	//// There will always be a spline in samurai-dash
+	//SplineModel* spline = SplineFactory::LoadSpline();
+	//mModel.push_back(spline);
+
+	//// ...
+
+	//// Finally the static samurai-dash scene is loaded
+	//LoadScene(sceneFile);
+
+	//SkyboxModel* skybox = new SkyboxModel();
+	//mModel.push_back(skybox);
 }
 
 void World::LoadScene(const char * scene_path)

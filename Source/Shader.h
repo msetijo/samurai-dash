@@ -9,6 +9,9 @@
 
 #include "Textures.h"
 
+#include "Camera.h"
+#include "World.h"
+
 class Shader {
 
 public:
@@ -20,6 +23,10 @@ public:
 		GLuint location = glGetUniformLocation(mId, name);
 		glUniformMatrix4fv(location, 1, GL_FALSE, &m[0][0]);
 	};
+
+	void SetViewProjectionMatrix() {
+		SetMatrix("ViewProjectionTransform", World::GetInstance()->GetCamera()->GetViewProjectionMatrix());
+	}
 
 	void SetTexture(const char* name, Texture2D& t, GLenum textureUnit) {
 		GLuint location = glGetUniformLocation(mId, name);
