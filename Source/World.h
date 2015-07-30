@@ -24,6 +24,8 @@ class World
 {
 public:
 	static const char* sceneFile;
+	// If true then models with bounding volumes will draw the volumes
+	static const bool DRAW_BOUNDING_VOLUME = true;
 
 	World();
 	~World();

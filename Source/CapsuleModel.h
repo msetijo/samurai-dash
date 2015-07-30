@@ -19,6 +19,12 @@ protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token) { return false; }
 
 private:
+
+	// Number of line segments to make for the cylinder, the more the rounder it is.
+	static const int CYLINDER_SEGMENTS = 18;
+	// Number of line segments to make for the sphere halves, the more the rounder it is.
+	static const int SPHERE_SEGMENTS = 18;
+
 	struct Vertex {
 		glm::vec3 position;
 	};

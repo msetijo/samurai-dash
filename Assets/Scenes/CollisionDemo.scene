@@ -14,7 +14,7 @@ key = "playerEnd" time = 5.0f
 [player]
 name = "Player"
 animation = "move-on-z-axis"
-boundingVolume = capsule 0 1 0 0 -1 0 1
+boundingVolume = capsule a = 0 .25 0 b = 0 -0.25 0 r = 0.70
 
 [AnimationKey]
 name = "obstacleStart"
@@ -32,7 +32,7 @@ key = "obstacleEnd" time = 2.5f
 [cube]
 name = "Obstacle"
 animation = "move-on-x-axis"
-boundingVolume = capsule 0 1 0 0 -1 0 1
+boundingVolume = capsule a = 0 .25 0 b = 0 -0.25 0 r = 0.70
 
 [Cube]
 name     = "Ground"

@@ -39,9 +39,8 @@ void CapsuleModel::Draw() {
 void CapsuleModel::makeCapsuleLineSegments(std::vector<Vertex>& vertexes, const rtcd::Capsule& capsule) {
 
 	vec3 ba = normalize(capsule.b - capsule.a);
-	vec3 n = math::anyOrthogonalVector(ba);
+	vec3 n = capsule.r * normalize(math::anyOrthogonalVector(ba));
 
-	int N = 18;
 	float Pi = pi<float>();
 
 	vec3 prevR = n;
@@ -50,7 +49,7 @@ void CapsuleModel::makeCapsuleLineSegments(std::vector<Vertex>& vertexes, const 
 	vec3 prevBottomLeft = capsule.b + prevR;
 	vec3 prevBottomRight = capsule.b - prevR;
 
-	for (float d = 0; d <= 180; d += 180 / N) {
+	for (float d = 0; d <= 180; d += 180 / CYLINDER_SEGMENTS) {
 
 		vec3 r = vec3(rotate(d, ba) * vec4(n, 1));
 		vec3 topLeft = capsule.a + r;
@@ -81,7 +80,7 @@ void CapsuleModel::makeCapsuleLineSegments(std::vector<Vertex>& vertexes, const 
 		prevBottomRight = capsule.b - prevR;
 	}
 
-	if (N % 180 != 0) {
+	if (CYLINDER_SEGMENTS % 180 != 0) {
 
 		vec3 firstTopLeft = vertexes[0].position;
 		vec3 firstTopRight = vertexes[0 + 2].position;
@@ -111,12 +110,10 @@ void CapsuleModel::makeHalfCircleLineSegments(std::vector<Vertex>& vertexes, vec
 
 void CapsuleModel::makeQuarterCircleLineSegments(std::vector<Vertex>& vertexes, glm::vec3 p, glm::vec3 q, glm::vec3 center, float radius) {
 
-	int M = 10;
-
 	vec3 prevU = p;
-	for (int i = 0; i < M; i++) {
+	for (int i = 0; i < SPHERE_SEGMENTS; i++) {
 
-		float t = i / (float)M;
+		float t = i / (float)SPHERE_SEGMENTS;
 		vec3 v = p + t * (q - p);
 		vec3 u = radius * normalize(v - center);
 

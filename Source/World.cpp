@@ -125,7 +125,7 @@ World* World::GetInstance()
 void World::Draw()
 {
 	Renderer::BeginFrame();
-	
+
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
 
@@ -140,6 +140,17 @@ void World::Draw()
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
 		(*it)->Draw();
+	}
+
+	if (DRAW_BOUNDING_VOLUME) {
+		for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
+		{
+			Model* bvm = (*it)->GetBoundingVolumeModel();
+
+			if (bvm) {
+				bvm->Draw();
+			}		
+		}
 	}
 
 	// Draw Path Lines

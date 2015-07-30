@@ -19,29 +19,20 @@ const char* World::sceneFile = "../Assets/Scenes/SamuraiDash.scene";
 
 void World::LoadScene() {
 
-	LoadScene("../Assets/Scenes/CoordinateSystem.scene");
+	// The world's scene for samurai-dash
+	// Do any complex dynamic initialization in here
 
-	// Capsule c = { vec3(0, 1, 0), vec3(0, -1, 0), 1 };
-	// Capsule c = { vec3(1, 1, 0), vec3(-1, -1, 0), 1 };
-	Capsule c = { vec3(1, 0, 0), vec3(-1, 0, 0), 1 };
+	// There will always be a spline in samurai-dash
+	SplineModel* spline = SplineFactory::LoadSpline();
+	mModel.push_back(spline);
 
-	CapsuleModel* cm = new CapsuleModel(c);
-	mModel.push_back(cm);
+	// ...
 
-	//// The world's scene for samurai-dash
-	//// Do any complex dynamic initialization in here
+	// Finally the static samurai-dash scene is loaded
+	LoadScene(sceneFile);
 
-	//// There will always be a spline in samurai-dash
-	//SplineModel* spline = SplineFactory::LoadSpline();
-	//mModel.push_back(spline);
-
-	//// ...
-
-	//// Finally the static samurai-dash scene is loaded
-	//LoadScene(sceneFile);
-
-	//SkyboxModel* skybox = new SkyboxModel();
-	//mModel.push_back(skybox);
+	SkyboxModel* skybox = new SkyboxModel();
+	mModel.push_back(skybox);
 }
 
 void World::LoadScene(const char * scene_path)
