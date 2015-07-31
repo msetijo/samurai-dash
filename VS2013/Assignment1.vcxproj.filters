@@ -77,6 +77,9 @@
     <None Include="..\Assets\Shaders\Skybox.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Assets\Scenes\CollisionDemo.scene">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\ParticleDescriptor.cpp">
@@ -143,6 +146,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\RealTimeCollisionDetection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\World-Update.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\World-Load.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\CapsuleModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -217,6 +238,18 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\AssetsDir.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\RealTimeCollisionDetection.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\PlayerModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\CapsuleModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Math.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
