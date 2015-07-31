@@ -1,0 +1,24 @@
+#ifndef ASSETDIR_H
+#define ASSETDIR_H
+
+#define ASSET_DIR "../Assets"
+
+<<<<<<< HEAD
+#endif
+
+#define MODEL_DIR "/Models"
+#define SHEEP_DIR "/Sheep"
+=======
+>>>>>>> 153263c087232472d9548ec0ce1e10997676bbea
+#define SCENES_DIR ASSET_DIR "/Scenes"
+#define SHADERS_DIR ASSET_DIR "/Shaders"
+#define TEXTURES_DIR ASSET_DIR "/Textures"
+
+#define TEXTURE_BILLBOARD_TEST TEXTURES_DIR "/BillboardTest.bmp"
+
+#define SKYBOX_DIR TEXTURES_DIR "/Skybox"
+#define SKYBOX_NIGHTSKY SKYBOX_DIR "/Nightsky"
+
+#define HOLY_SHEEP ASSET_DIR MODEL_DIR SHEEP_DIR "/SHEEP.obj"
+#define HOLY_SHEEP_MATERIAL ASSET_DIR MODEL_DIR SHEEP_DIR "/"
+#endif

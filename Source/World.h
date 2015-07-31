@@ -15,6 +15,7 @@
 
 class Camera;
 class Model;
+class PlayerModel;
 class Animation;
 class AnimationKey;
 class ParticleSystem;
@@ -23,6 +24,8 @@ class World
 {
 public:
 	static const char* sceneFile;
+	// If true then models with bounding volumes will draw the volumes
+	static const bool DRAW_BOUNDING_VOLUME = true;
 
 	World();
 	~World();
@@ -47,7 +50,12 @@ public:
     
 	Camera* GetCamera() { return mCamera[mCurrentCamera]; }
 
+	PlayerModel* GetPlayer() { return mPlayerModel; };
+
 private:
+
+	void UpdateCollision(float dt);
+
     static World* instance;
     
 	std::vector<Model*> mModel;
@@ -58,4 +66,6 @@ private:
 	unsigned int mCurrentCamera;
 
     BillboardList* mpBillboardList;
+
+	PlayerModel* mPlayerModel;
 };
