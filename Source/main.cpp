@@ -36,17 +36,12 @@ int main(int argc, char*argv[])
 
 	World world;    
     
-	world.LoadScene();
+	//world.LoadScene();
 
 	// If Running on Windows Then Play Background Music
-	PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	//PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
-		vector<shape_t> shapes;
-		vector<material_t> materials;
-
-		string name = LoadObj(shapes, materials, HOLY_SHEEP, HOLY_SHEEP_MATERIAL);
-
-
+	world.LoadScene("../Assets/Scenes/Player.scene");
 
 //	if (argc > 1)
 //	{
