@@ -31,7 +31,6 @@ PlayerModel::PlayerModel() :
 	mPlayerState(&mTrackState) {
 
 	SetScaling(vec3(3));
-	// SetRotation(vec3(0, 1, 0), 180);
 }
 
 void PlayerModel::Update(float dt) {
@@ -42,7 +41,6 @@ void PlayerModel::Update(float dt) {
 void PlayerModel::UpdatePosition(float dt) {
 
 	mCurrentSplineTime += mSplineTimeSpeed * dt;
-	// mCurrentSplineTime = 0.5;
 
 	SplineModel::Plane p = World::GetInstance()->GetSpline()->PlaneAt(mCurrentSplineTime);
 	float trackPieceWidth = SplineFactory::trackWidth / 3;
@@ -80,6 +78,9 @@ vec3 PlayerModel::TrackShiftDir(Track dir) {
 }
 
 void TrackState::setup() {
+	// Consume the first press when coming back from MoveState.
+	// For some reason IsKeyPressed will return true when no key is pressed.
+	// Need to RTFM.
 	mFirstPress = true;
 }
 
@@ -90,28 +91,15 @@ void TrackState::Update(float dt) {
 	bool leftPressed = EventManager::IsKeyPressed(GLFW_KEY_LEFT) && !mFirstPress;
 	bool rightPressed = EventManager::IsKeyPressed(GLFW_KEY_RIGHT) && !mFirstPress;
 	
-	if (mFirstPress) {
-		mFirstPress = false;
-	}
-
-	static int ctr = 0;
-
-	if (leftPressed) {
-		cout << "leftPressed " << ctr++ << endl;
-	}
-	else if (rightPressed) {
-		cout << "rightPressed " << ctr++ << endl;
-	}
+	mFirstPress = false;
 
 	bool left = leftPressed && mPlayer.mTrack != TRACK_LEFT;
 	bool right = rightPressed && mPlayer.mTrack != TRACK_RIGHT;
 
 	if (left) {
-		cout << "left " << ctr++ << endl;
 		mPlayer.mMoveState.SetTrackMove(TRACK_LEFT);
 	}
 	else if (right) {
-		cout << "right " << ctr++ << endl;
 		mPlayer.mMoveState.SetTrackMove(TRACK_RIGHT);
 	}
 
