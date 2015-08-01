@@ -2,23 +2,15 @@
 #define PLAYERMODE_H
 
 #include "Model.h"
+#include "ObjectModel.h"
 
-class PlayerModel : public Model 
+class PlayerModel : public ObjectModel
 {
 
-public: PlayerModel();
-		unsigned int mVertexArrayID;
-		std::vector<unsigned int> awesomeSheepList;
-		virtual void Draw();
-		virtual void Update(float dt)
-		{
-
-		}
-		virtual bool ParseLine(const std::vector<ci_string> &token)
-		{
-			return true;
-		}
-
+public: 
+	static const glm::vec3 SHEEP_SHAPE_COLORS[];
+	PlayerModel();
+		
 };
 
 
