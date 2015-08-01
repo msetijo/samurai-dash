@@ -64,7 +64,7 @@ void World::LoadScene(const char * scene_path)
 		ci_string result;
 		if (std::getline(iss, result, ']'))
 		{
-			if (result == "player") // FIXME - temporary collision test setup
+			if (result == "player")
 			{
 				// Box attributes
 				PlayerModel* player = new PlayerModel();

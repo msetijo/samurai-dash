@@ -35,6 +35,8 @@ PlayerModel::PlayerModel() :
 
 void PlayerModel::Update(float dt) {
 
+	if (!World::GetInstance()->GetSpline()) { return;  }
+
 	mPlayerState->Update(dt);
 }	
 

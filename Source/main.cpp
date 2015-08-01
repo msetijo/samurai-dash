@@ -51,6 +51,7 @@ int main(int argc, char*argv[])
 //		world.LoadScene("../Assets/Scenes/CoordinateSystem.scene");
 //		world.LoadScene("../Assets/Scenes/CollisionDemo.scene");
 //		world.LoadScene("../Assets/Scenes/Animal.scene");
+//		world.LoadScene("../Assets/Scenes/Player.scene");
 //#endif
 //	}
 
