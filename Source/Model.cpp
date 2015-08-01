@@ -13,25 +13,37 @@
 #include "ParticleEmitter.h"
 #include "ParticleDescriptor.h"
 #include "ParticleSystem.h"
+#include "RealTimeCollisionDetection.h"
+#include "CapsuleModel.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/common.hpp>
 
 using namespace std;
 using namespace glm;
+using namespace rtcd;
 
-Model::Model() 
-: mName("UNNAMED"), mPosition(0.0f, 0.0f, 0.0f), mScaling(1.0f, 1.0f, 1.0f), mRotationAxis(0.0f, 1.0f, 0.0f),
-  mRotationAngleInDegrees(0.0f), mAnimation(nullptr), mParticleSystem(nullptr)
-{
-}
+Model::Model() : 
+	mName("UNNAMED"),
+	mPosition(0.0f, 0.0f, 0.0f), 
+	mScaling(1.0f, 1.0f, 1.0f), 
+	mRotationAxis(0.0f, 1.0f, 0.0f),
+	mRotationAngleInDegrees(0.0f), 
+	mBoundingVolume(),
+	mParent(nullptr),
+	mAnimation(nullptr), 
+	mParticleSystem(nullptr),
+	mBoundingVolumeModel(nullptr) {}
 
 Model::~Model()
 {
-    if (mParticleSystem)
+	if (mParticleSystem)
     {
         World::GetInstance()->RemoveParticleSystem(mParticleSystem);
         delete mParticleSystem;
     }
+
+	if (mBoundingVolumeModel) { delete mBoundingVolumeModel; }
 }
 
 void Model::Update(float dt)
@@ -123,10 +135,19 @@ bool Model::ParseLine(const std::vector<ci_string> &token)
         {
             assert(token.size() > 2);
             assert(token[1] == "=");
-            assert(token[2] == "\"fire\"" || token[2] == "\"fountain\""); // only to hardcoded particle systems
+            assert(token[2] == "\"fire\"" || token[2] == "\"fountain\"" || token[2] == "\"poop\""); // only to hardcoded particle systems
 
-            
-            ParticleEmitter* emitter = new ParticleEmitter(vec3(0.0f, 0.0f, 0.0f), this);
+			ParticleEmitter* emitter;
+
+			if (token[2] == "\"poop\"")
+			{
+				emitter = new ParticleEmitter(vec3(0.0f, 2.0f, 1.7f), this);
+			}
+			else
+			{
+				emitter = new ParticleEmitter(vec3(0.0f, 0.0f, 0.0f), this);
+			}
+   
             ParticleDescriptor* desc = new ParticleDescriptor();
             
             if (token[2] == "\"fire\"")
@@ -137,10 +158,35 @@ bool Model::ParseLine(const std::vector<ci_string> &token)
             {
                 desc->SetFountainDescriptor();
             }
+			else if (token[2] == "\"poop\"")
+			{
+				desc->SetPoopDescriptor();
+			}
             
             mParticleSystem = new ParticleSystem(emitter, desc);
             World::GetInstance()->AddParticleSystem(mParticleSystem);
         }
+		else if (token[0] == "boundingVolume") {
+
+			assert(token.size() > 15 );
+			assert(token[1] == "=");
+			assert(token[2] == "capsule");
+			assert(token[3] == "a");
+			assert(token[4] == "=");
+			float ax = static_cast<float>(atof(token[5].c_str()));
+			float ay = static_cast<float>(atof(token[6].c_str()));
+			float az = static_cast<float>(atof(token[7].c_str()));
+			assert(token[8] == "b");
+			assert(token[9] == "=");
+			float bx = static_cast<float>(atof(token[10].c_str()));
+			float by = static_cast<float>(atof(token[11].c_str()));
+			float bz = static_cast<float>(atof(token[12].c_str()));
+			assert(token[13] == "r");
+			assert(token[14] == "=");
+			float r = static_cast<float>(atof(token[15].c_str()));
+			
+			setCapsuleBoundingVolume(new Capsule({ vec3(ax, ay, ax), vec3(bx, by, bx), r }));
+		}
 		else
 		{
 			return false;
@@ -169,6 +215,10 @@ glm::mat4 Model::GetWorldMatrix() const
         mat4 r = glm::rotate(mat4(1.0f), mRotationAngleInDegrees, mRotationAxis);
         mat4 s = glm::scale(mat4(1.0f), mScaling);
         worldMatrix = t * r * s;
+
+		if (mParent) {
+			worldMatrix = mParent->GetWorldMatrix() * worldMatrix;
+		}
     }
 #endif
     
@@ -189,4 +239,17 @@ void Model::SetRotation(glm::vec3 axis, float angleDegrees)
 {
 	mRotationAxis = axis;
 	mRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::setCapsuleBoundingVolume(Capsule* capsule) {
+	
+	mBoundingVolume.setCapsule(capsule);
+
+	if (World::DRAW_BOUNDING_VOLUME) {
+		
+		if (mBoundingVolumeModel) { delete mBoundingVolumeModel; }
+		
+		mBoundingVolumeModel = new CapsuleModel(*capsule);
+		mBoundingVolumeModel->SetParent(this);
+	}
 }

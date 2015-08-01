@@ -48,22 +48,12 @@ void EventManager::Initialize()
 		
 	glfwWindowHint(GLFW_SAMPLES, 4);
     
-#if defined(PLATFORM_OSX)
-    // OS X would use legacy opengl by default, and wouldn't be able to load shaders
-    // This is the proper way to setup GLFW to use modern OpenGL
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint(GLFW_DEPTH_BITS, 32);
-    
-#else
     // Allow older laptops to run the framework, even though, our framework
     // is compatible with OpenGL 3.3 (which removed many deprecated features)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_DEPTH_BITS, 32);
-#endif
+
     
     
 	// Open a window and create its OpenGL context
@@ -159,4 +149,8 @@ float EventManager::GetRandomFloat(float min, float max)
     float value = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
     return min + value*(max - min);
+}
+
+bool EventManager::IsKeyPressed(int key) {
+	return glfwGetKey(EventManager::GetWindow(), key) == GLFW_PRESS;
 }

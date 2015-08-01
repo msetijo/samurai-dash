@@ -25,17 +25,10 @@ using namespace std;
 
 #include <GLFW/glfw3.h>
 
-
-#if defined(PLATFORM_OSX)
-#define fscanf_s fscanf
-#endif
-
-
 std::vector<unsigned int> Renderer::sShaderProgramID;
 unsigned int Renderer::sCurrentShader;
 
 GLFWwindow* Renderer::spWindow = nullptr;
-
 
 void Renderer::Initialize()
 {
@@ -69,11 +62,7 @@ void Renderer::Initialize()
     CheckForErrors();
     
 	// Loading Shaders
-#if defined(PLATFORM_OSX)
-    std::string shaderPathPrefix = "Shaders/";
-#else
     std::string shaderPathPrefix = "../Assets/Shaders/";
-#endif
 
 	sShaderProgramID.push_back(
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",

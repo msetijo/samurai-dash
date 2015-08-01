@@ -18,6 +18,11 @@ public:
 	 */
 	static const ci_string splineName;
 
+	/***
+	 * The width of the spline track.
+	 */
+	static const float trackWidth;
+
 	static SplineModel* LoadSpline();
 
 private:
@@ -54,11 +59,6 @@ private:
 	 * where 0 <= t <= 1.
 	 */
 	static const int triangleStripSegmentCount;
-
-	/***
-	 * The width of the spline track.
-	 */
-	static const float trackWidth;
 
 	/**
 	 *

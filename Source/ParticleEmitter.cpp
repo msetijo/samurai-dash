@@ -28,11 +28,14 @@ glm::vec3 ParticleEmitter::GetRandomPosition()
     //
     // Return the position where the particle is emitted.
     // If the emitter is parented, the position is relative to its parent
-
-    glm::vec3 position = mPosition;
-    
-    
-    return position;
+	
+	if (mpParent) {
+		mat4 W = mpParent->GetWorldMatrix();
+		return vec3(W[3][0], W[3][1], W[3][2]) + mPosition;
+	}
+	else {
+		return mPosition;
+	}
 }
 
 
