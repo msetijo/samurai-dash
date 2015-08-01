@@ -54,8 +54,6 @@ ObjectModel::ObjectModel(const char* objFile, const char* matFile, const vec3 co
 		shapesVertexBuffer.push_back(s);
 		shapesVertexBuffer.push_back(colorVertexBuffer);
 	}
-
-	SetScaling(vec3(5));
 }
 
 void ObjectModel::Draw()
@@ -116,5 +114,16 @@ void ObjectModel::Draw()
 		glDisableVertexAttribArray(1);
 		glDisableVertexAttribArray(2);
 	}
+}
 
+bool ObjectModel::ParseLine(const std::vector<ci_string> &token)
+{
+	if (token.empty())
+	{
+		return true;
+	}
+	else
+	{
+		return Model::ParseLine(token);
+	}
 }

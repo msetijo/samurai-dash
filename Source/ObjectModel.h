@@ -15,11 +15,7 @@ public: ObjectModel(const char* objFile, const char* matFile, const glm::vec3 co
 		{
 
 		}
-		virtual bool ParseLine(const std::vector<ci_string> &token)
-		{
-			return true;
-		}
-
+		virtual bool ParseLine(const std::vector<ci_string> &token);
 };
 
 

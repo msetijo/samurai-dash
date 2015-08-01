@@ -1,6 +1,7 @@
 #include "World.h"
 #include "ParsingHelper.h"
 
+#include "WolfModel.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
 #include "PlayerModel.h"
@@ -65,6 +66,13 @@ void World::LoadScene(const char * scene_path)
 				mModel.push_back(player);
 
 				mPlayerModel = player;
+			}
+			else if (result == "wolf")
+			{
+				// Box attributes
+				WolfModel* wolf = new WolfModel();
+				wolf->Load(iss);
+				mModel.push_back(wolf);
 			}
 			else if (result == "cube")
 			{

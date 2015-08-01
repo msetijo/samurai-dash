@@ -6,13 +6,8 @@
 
 class PlayerModel : public ObjectModel
 {
-
 public: 
 	static const glm::vec3 SHEEP_SHAPE_COLORS[];
-	PlayerModel();
-		
+	PlayerModel();	
 };
-
-
-
 #endif
