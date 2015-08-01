@@ -1,15 +1,7 @@
 #ifndef ASSETDIR_H
 #define ASSETDIR_H
 
-#if defined(PLATFORM_OSX)	
-
-#define ASSET_DIR ""
-
-#else
-
 #define ASSET_DIR "../Assets"
-
-#endif
 
 #define MODEL_DIR "/Models"
 

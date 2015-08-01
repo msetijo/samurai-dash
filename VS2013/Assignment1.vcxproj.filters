@@ -83,9 +83,6 @@
     <None Include="..\Assets\Scenes\CollisionDemo.scene">
       <Filter>Resource Files\Scenes</Filter>
     </None>
-    <None Include="..\Assets\Scenes\Player.scene">
-      <Filter>Resource Files\Scenes</Filter>
-    </None>
     <None Include="..\Assets\Scenes\Animal.scene">
       <Filter>Resource Files\Scenes</Filter>
     </None>

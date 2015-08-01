@@ -17,13 +17,7 @@
 #include "Billboard.h"
 #include "TextureLoader.h"
 
-#include "tiny_obj_loader.h"
-#include "AssetsDir.h"
-#include <vector>
-#include <string>
-
 using namespace std;
-using namespace tinyobj;
 
 #include <GLFW/glfw3.h>
 
