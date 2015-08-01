@@ -135,10 +135,19 @@ bool Model::ParseLine(const std::vector<ci_string> &token)
         {
             assert(token.size() > 2);
             assert(token[1] == "=");
-            assert(token[2] == "\"fire\"" || token[2] == "\"fountain\""); // only to hardcoded particle systems
+            assert(token[2] == "\"fire\"" || token[2] == "\"fountain\"" || token[2] == "\"poop\""); // only to hardcoded particle systems
 
-            
-            ParticleEmitter* emitter = new ParticleEmitter(vec3(0.0f, 0.0f, 0.0f), this);
+			ParticleEmitter* emitter;
+
+			if (token[2] == "\"poop\"")
+			{
+				emitter = new ParticleEmitter(vec3(0.0f, 2.0f, 1.7f), this);
+			}
+			else
+			{
+				emitter = new ParticleEmitter(vec3(0.0f, 0.0f, 0.0f), this);
+			}
+   
             ParticleDescriptor* desc = new ParticleDescriptor();
             
             if (token[2] == "\"fire\"")
@@ -149,6 +158,10 @@ bool Model::ParseLine(const std::vector<ci_string> &token)
             {
                 desc->SetFountainDescriptor();
             }
+			else if (token[2] == "\"poop\"")
+			{
+				desc->SetPoopDescriptor();
+			}
             
             mParticleSystem = new ParticleSystem(emitter, desc);
             World::GetInstance()->AddParticleSystem(mParticleSystem);
