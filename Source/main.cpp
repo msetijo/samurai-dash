@@ -17,6 +17,8 @@
 #include "Billboard.h"
 #include "TextureLoader.h"
 
+using namespace std;
+
 #include <GLFW/glfw3.h>
 
 #define FPS 60
@@ -48,6 +50,7 @@ int main(int argc, char*argv[])
 //		world.LoadScene("../Assets/Scenes/StaticScene.scene");
 //		world.LoadScene("../Assets/Scenes/CoordinateSystem.scene");
 //		world.LoadScene("../Assets/Scenes/CollisionDemo.scene");
+//		world.LoadScene("../Assets/Scenes/Animal.scene");
 //#endif
 //	}
 

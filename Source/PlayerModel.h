@@ -1,12 +1,13 @@
 #ifndef PLAYERMODEL_H
 #define PLAYERMODE_H
 
-#include "CubeModel.h"
+#include "Model.h"
+#include "ObjectModel.h"
 
-class PlayerModel : public CubeModel {
-
-public:
-	PlayerModel() : CubeModel() {}
+class PlayerModel : public ObjectModel
+{
+public: 
+	static const glm::vec3 SHEEP_SHAPE_COLORS[];
+	PlayerModel();	
 };
-
 #endif
