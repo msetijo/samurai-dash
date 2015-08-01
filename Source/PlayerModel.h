@@ -26,8 +26,12 @@ protected:
 class TrackState : public PlayerState {
 
 public:	
-	TrackState(PlayerModel& player) : PlayerState(player) {}
+	TrackState(PlayerModel& player) : PlayerState(player), mFirstPress(false) {}
+	virtual void setup();
 	virtual void Update(float dt);
+
+private:
+	bool mFirstPress;
 };
 
 class MoveState : public PlayerState {

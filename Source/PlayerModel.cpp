@@ -6,6 +6,8 @@
 #include "World.h"
 #include "SplineFactory.h"
 
+#include <iostream>
+
 #include <GLFW/glfw3.h>
 #include <glm/gtx/quaternion.hpp>
 
@@ -13,7 +15,7 @@ using namespace std;
 using namespace glm;
 
 const float PlayerModel::DEFAULT_SPLINE_TIME_SPEED = 0.25f;
-const float PlayerModel::DEFAULT_MOVE_SPEED = 3.0f;
+const float PlayerModel::DEFAULT_MOVE_SPEED = 7.0f;
 const float PlayerModel::MODEL_SPACE_HEIGHT_OFFSET = 0.0f;
 
 const glm::vec3 PlayerModel::SHEEP_SHAPE_COLORS[] = { vec3{ 0.0f, 0.0f, 0.0f }, vec3{ 0.0f, 0.0f, 0.0f }, vec3{ 0.686275f, 0.933333f, 0.933333f } };
@@ -40,6 +42,7 @@ void PlayerModel::Update(float dt) {
 void PlayerModel::UpdatePosition(float dt) {
 
 	mCurrentSplineTime += mSplineTimeSpeed * dt;
+	// mCurrentSplineTime = 0.5;
 
 	SplineModel::Plane p = World::GetInstance()->GetSpline()->PlaneAt(mCurrentSplineTime);
 	float trackPieceWidth = SplineFactory::trackWidth / 3;
@@ -76,17 +79,39 @@ vec3 PlayerModel::TrackShiftDir(Track dir) {
 	}
 }
 
+void TrackState::setup() {
+	mFirstPress = true;
+}
+
 void TrackState::Update(float dt) {
 
 	mPlayer.UpdatePosition(dt);
 
-	bool left = EventManager::IsKeyPressed(GLFW_KEY_LEFT) && mPlayer.mTrack != TRACK_LEFT;
-	bool right = EventManager::IsKeyPressed(GLFW_KEY_RIGHT) && mPlayer.mTrack != TRACK_RIGHT;
+	bool leftPressed = EventManager::IsKeyPressed(GLFW_KEY_LEFT) && !mFirstPress;
+	bool rightPressed = EventManager::IsKeyPressed(GLFW_KEY_RIGHT) && !mFirstPress;
+	
+	if (mFirstPress) {
+		mFirstPress = false;
+	}
+
+	static int ctr = 0;
+
+	if (leftPressed) {
+		cout << "leftPressed " << ctr++ << endl;
+	}
+	else if (rightPressed) {
+		cout << "rightPressed " << ctr++ << endl;
+	}
+
+	bool left = leftPressed && mPlayer.mTrack != TRACK_LEFT;
+	bool right = rightPressed && mPlayer.mTrack != TRACK_RIGHT;
 
 	if (left) {
+		cout << "left " << ctr++ << endl;
 		mPlayer.mMoveState.SetTrackMove(TRACK_LEFT);
 	}
 	else if (right) {
+		cout << "right " << ctr++ << endl;
 		mPlayer.mMoveState.SetTrackMove(TRACK_RIGHT);
 	}
 
@@ -102,19 +127,21 @@ void MoveState::SetTrackMove(Track dir) {
 
 void MoveState::Update(float dt) {
 
-	// PlayerState::Update(dt);
-
-	// mPlayer.UpdatePosition(dt); 
-
-	// vec3 dir = mDir == TRACK_LEFT ? vec3(-1, 0, 0) : vec3(1, 0, 0);
-
-	// mPlayer.SetPosition(mPlayer.GetPosition() + dir * mPlayer.mMoveSpeed * mCurrentTime);
-
-	// int next = (int)mPlayer.mTrack + (mDir == TRACK_LEFT ? -1 : 1);
-	// Track nextTrack = (Track)clamp(next, 0, 2);
-
+	PlayerState::Update(dt);
 	mPlayer.UpdatePosition(dt);
 
-	// mPlayer.mTrackState.setup();
-	// mPlayer.mPlayerState = &mPlayer.mTrackState;
+	float trackPieceWidth = SplineFactory::trackWidth / 3;
+	vec3 trackShift = mPlayer.TrackShiftDir(mDir) * mPlayer.mMoveSpeed * mCurrentTime;
+
+	mPlayer.SetPosition(mPlayer.GetPosition() + trackShift);
+
+	if (length(trackShift) >= trackPieceWidth) {
+		int next = (int)mPlayer.mTrack + (mDir == TRACK_LEFT ? -1 : 1);
+		Track nextTrack = (Track)clamp(next, 0, 2);
+
+		mPlayer.mTrack = nextTrack;
+
+		mPlayer.mTrackState.setup();
+		mPlayer.mPlayerState = &mPlayer.mTrackState;
+	}
 }
