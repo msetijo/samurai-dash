@@ -21,6 +21,7 @@ public:
     
     void SetFountainDescriptor();
     void SetFireDescriptor();
+	void SetPoopDescriptor();
     
 private:
     
