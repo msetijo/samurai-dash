@@ -150,3 +150,7 @@ float EventManager::GetRandomFloat(float min, float max)
 
     return min + value*(max - min);
 }
+
+bool EventManager::IsKeyPressed(int key) {
+	return glfwGetKey(EventManager::GetWindow(), key) == GLFW_PRESS;
+}

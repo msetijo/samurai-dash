@@ -22,11 +22,12 @@ void World::LoadScene() {
 	// The world's scene for samurai-dash
 	// Do any complex dynamic initialization in here
 
-	// There will always be a spline in samurai-dash
-	SplineModel* spline = SplineFactory::LoadSpline();
-	mModel.push_back(spline);
+	mSplineModel = SplineFactory::LoadSpline();
+	mModel.push_back(mSplineModel);
 
-	// ...
+
+	mPlayerModel = new PlayerModel();
+	mModel.push_back(mPlayerModel);
 
 	// Finally the static samurai-dash scene is loaded
 	LoadScene(sceneFile);

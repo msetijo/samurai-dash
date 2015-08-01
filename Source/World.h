@@ -15,6 +15,7 @@
 
 class Camera;
 class Model;
+class SplineModel;
 class PlayerModel;
 class Animation;
 class AnimationKey;
@@ -48,7 +49,9 @@ public:
     void AddParticleSystem(ParticleSystem* particleSystem);
     void RemoveParticleSystem(ParticleSystem* particleSystem);
     
-	Camera* GetCamera() { return mCamera[mCurrentCamera]; }
+	Camera* GetCamera() { return mCamera[mCurrentCamera]; };
+
+	SplineModel* GetSpline() { return mSplineModel; };
 
 	PlayerModel* GetPlayer() { return mPlayerModel; };
 
@@ -67,5 +70,6 @@ private:
 
     BillboardList* mpBillboardList;
 
+	SplineModel* mSplineModel;
 	PlayerModel* mPlayerModel;
 };

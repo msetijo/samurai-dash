@@ -31,7 +31,7 @@ int main(int argc, char*argv[])
 	world.LoadScene();
 
 	// If Running on Windows Then Play Background Music
-	PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	// PlaySound(TEXT("../Assets/Sounds/RainbowRoad.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
 //	if (argc > 1)
 //	{
