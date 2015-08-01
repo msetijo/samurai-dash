@@ -1,7 +1,7 @@
 #ifndef PLAYERMODEL_H
 #define PLAYERMODE_H
 
-#include "CubeModel.h"
+#include "ObjectModel.h"
 
 class PlayerState;
 class PlayerModel;
@@ -40,22 +40,17 @@ private:
 	Track mDir;
 };
 
-class PlayerModel : public CubeModel {
+class PlayerModel : public ObjectModel {
 
 public:
 	const static float DEFAULT_SPLINE_TIME_SPEED;
 	const static float DEFAULT_MOVE_SPEED;
 	const static float MODEL_SPACE_HEIGHT_OFFSET;
 
-	PlayerModel() : CubeModel(), 
-		mCurrentSplineTime(), 
-		mSplineTimeSpeed(DEFAULT_SPLINE_TIME_SPEED),
-		mMoveSpeed(DEFAULT_MOVE_SPEED),
-		mTrack(TRACK_MIDDLE),
-		mTrackState(*this),
-		mMoveState(*this),
-		mPlayerState(&mTrackState) {}
+	static const glm::vec3 SHEEP_SHAPE_COLORS[];
 
+	PlayerModel();
+		
 	virtual void Update(float dt);
 
 private:

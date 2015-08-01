@@ -98,6 +98,7 @@
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\Assets\Scenes\Animal.scene" />
     <None Include="..\Assets\Scenes\AnimatedScene.scene" />
     <None Include="..\Assets\Scenes\AnimatedSceneWithParticles.scene" />
     <None Include="..\Assets\Scenes\CollisionDemo.scene" />
@@ -127,6 +128,7 @@
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Math.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
+    <ClCompile Include="..\Source\ObjectModel.cpp" />
     <ClCompile Include="..\Source\ParticleDescriptor.cpp" />
     <ClCompile Include="..\Source\ParticleEmitter.cpp" />
     <ClCompile Include="..\Source\ParticleSystem.cpp" />
@@ -141,7 +143,9 @@
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\TextureLoader.cpp" />
     <ClCompile Include="..\Source\Textures.cpp" />
+    <ClCompile Include="..\Source\tiny_obj_loader.cc" />
     <ClCompile Include="..\Source\Vertexes.cpp" />
+    <ClCompile Include="..\Source\WolfModel.cpp" />
     <ClCompile Include="..\Source\World-Load.cpp" />
     <ClCompile Include="..\Source\World-Update.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
@@ -157,6 +161,7 @@
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
     <ClInclude Include="..\Source\Math.h" />
     <ClInclude Include="..\Source\Model.h" />
+    <ClInclude Include="..\Source\ObjectModel.h" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
     <ClInclude Include="..\Source\ParticleDescriptor.h" />
     <ClInclude Include="..\Source\ParticleEmitter.h" />
@@ -173,7 +178,9 @@
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\TextureLoader.h" />
     <ClInclude Include="..\Source\Textures.h" />
+    <ClInclude Include="..\Source\tiny_obj_loader.h" />
     <ClInclude Include="..\Source\Vertexes.h" />
+    <ClInclude Include="..\Source\WolfModel.h" />
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
