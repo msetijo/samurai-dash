@@ -14,10 +14,9 @@ class Obstacles
 public:
 	std::vector < Model* > listObstacles;
 	Obstacles();
-	void CalculateDistance(double score);
 	void RemoveObstacles(int position);
+	glm::vec3 RandomizeTrack(float t);
 	void AddObstacles(Model* m);
-	void TransformToWorld();
 	void PopulateRandomSample();
 	void Draw();
 	Model* GetRandomModel();

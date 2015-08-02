@@ -1,6 +1,7 @@
 #include "Obstacles.h"
 #include "PlayerModel.h"
 #include "SplineModel.h"
+#include "SplineFactory.h"
 #include "World.h"
 #include <GL/glew.h>
 using namespace std;
@@ -20,12 +21,29 @@ void Obstacles::AddObstacles(Model* m)
 	listObstacles.push_back(m);
 }
 
+glm::vec3 Obstacles::RandomizeTrack(float t)
+{
+	int rng = rand() % 3;
+	if (rng == 0)
+	{
+		return World::GetInstance()->GetSpline()->TrackShiftDir(TRACK_LEFT, t) * SplineFactory::trackWidth*(1.0f/3.0f);
+	}
+	else if (rng == 1)
+	{
+		return World::GetInstance()->GetSpline()->TrackShiftDir(TRACK_RIGHT, t)* SplineFactory::trackWidth*float(1.0f/3.0f);
+	}
+	else
+	{
+		return World::GetInstance()->GetSpline()->TrackShiftDir(TRACK_MIDDLE, t)* SplineFactory::trackWidth*float(1.0f/3.0f);
+	}
+}
+
 void Obstacles::PopulateRandomSample()
 {
 	int count = 0;
 	float maxTime = World::GetInstance()->GetSpline()->MaxTime();
 	float distanceTime = maxTime / 15.0f;
-	float obstaclesZOffset = 0.5f;
+
 	for (int i = 0; i < 15; i++)
 	{
 		listObstacles.push_back(GetRandomModel());
@@ -35,7 +53,8 @@ void Obstacles::PopulateRandomSample()
 	{
 		count++;
 		SplineModel::Plane p = World::GetInstance()->GetSpline()->PlaneAt(distanceTime * count);
-		m->SetPosition(p.position+ m->GetPosition());
+		glm::vec3 poop = p.position + m->GetPosition() + RandomizeTrack(distanceTime*count);
+		m->SetPosition(poop);
 	}
 }
 
@@ -56,19 +75,9 @@ Model* Obstacles::GetRandomModel()
 	{
 		SphereModel* sModel = new SphereModel();
 		sModel->SetPosition(glm::vec3(0, 1.0f, 0));
-		sModel->SetScaling(glm::vec3(3.0f, 3.0f, 3.0f));
+		sModel->SetScaling(glm::vec3(2.0f, 2.0f, 2.0f));
 		return sModel;
 	}
-}
-
-void Obstacles::CalculateDistance(double score)
-{
-	//get the score and change the distance between the cube
-}
-
-void Obstacles::TransformToWorld()
-{
-
 }
 
 void Obstacles::Draw()
