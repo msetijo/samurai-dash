@@ -4,6 +4,7 @@
 
 using namespace std;
 using namespace glm;
+using namespace rtcd;
 
 const ci_string SplineFactory::splineName = "Spline";
 
@@ -25,6 +26,8 @@ SplineModel* SplineFactory::LoadSpline() {
 	makeTriangleStrip(spline);
 
 	makeOscullatingPlanes(spline);
+
+	makeEndOfTrackBoundingVolume(spline);
 
 	return splineModel;
 }
@@ -144,4 +147,20 @@ void SplineFactory::makeOscullatingPlanes(SplineModel& spline) {
 	}
 
 	spline.SetOscullatingPlanes(points);
+}
+
+float SplineFactory::endOfTrackCapsuleTimeOffset = 0.75f;
+float SplineFactory::endOfTrackCapsuleRadius = 5;
+
+void SplineFactory::makeEndOfTrackBoundingVolume(SplineModel& spline) {
+
+	float maxTime = spline.MaxTime() - endOfTrackCapsuleTimeOffset;
+
+	SplineModel::Plane p = spline.PlaneAt(maxTime);
+
+	vec3 a = p.position + p.normal * trackWidth * 0.5f;
+	vec3 b = p.position - p.normal * trackWidth * 0.5f;
+	float r = endOfTrackCapsuleRadius;
+
+	spline.setCapsuleBoundingVolume(new Capsule(a, b, r));
 }

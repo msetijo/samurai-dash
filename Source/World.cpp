@@ -189,6 +189,8 @@ void World::Draw()
 
 	// Draw Spline
 	mSplineModel->Draw();
+	Model* bvm = mSplineModel->GetBoundingVolumeModel();
+	if (DRAW_BOUNDING_VOLUME && bvm) { bvm->Draw(); }
 
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
