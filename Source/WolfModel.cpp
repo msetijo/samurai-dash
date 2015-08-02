@@ -1,5 +1,6 @@
 #include "WolfModel.h"
 #include "AssetsDir.h"
+#include "Animation.h"
 
 using namespace std;
 using namespace glm;

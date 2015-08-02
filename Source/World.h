@@ -18,6 +18,7 @@ class Model;
 class SplineModel;
 class PlayerModel;
 class Obstacles;
+class WolfModel;
 class Animation;
 class AnimationKey;
 class ParticleSystem;
@@ -76,4 +77,6 @@ private:
 	SplineModel* mSplineModel;
 	PlayerModel* mPlayerModel;
 	Obstacles* mObstacles;
+
+	WolfModel* mWolfModel;
 };

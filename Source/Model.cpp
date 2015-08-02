@@ -216,10 +216,12 @@ glm::mat4 Model::GetWorldMatrix() const
         mat4 s = glm::scale(mat4(1.0f), mScaling);
         worldMatrix = t * r * s;
 
-		if (mParent) {
-			worldMatrix = mParent->GetWorldMatrix() * worldMatrix;
-		}
+		
     }
+
+	if (mParent) {
+		worldMatrix = mParent->GetWorldMatrix() * worldMatrix;
+	}
 #endif
     
 	return worldMatrix;

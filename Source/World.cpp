@@ -54,6 +54,7 @@ World::World()
 
 	mSplineModel = nullptr;
 	mPlayerModel = nullptr;
+	mWolfModel = nullptr;
 
     // TODO - You can un-comment out these 2 temporary billboards and particle system
     // That can help you debug billboards, you can set the billboard texture to billboardTest.png
@@ -191,6 +192,8 @@ void World::Draw()
 
 	// Draw Spline
 	mSplineModel->Draw();
+	Model* bvm = mSplineModel->GetBoundingVolumeModel();
+	if (DRAW_BOUNDING_VOLUME && bvm) { bvm->Draw(); }
 
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
