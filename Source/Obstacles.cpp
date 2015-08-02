@@ -11,16 +11,6 @@ Obstacles::Obstacles() : listObstacles()
 
 }
 
-void Obstacles::RemoveObstacles(int position)
-{
-	listObstacles.erase(listObstacles.begin() + position);
-}
-
-void Obstacles::AddObstacles(Model* m)
-{
-	listObstacles.push_back(m);
-}
-
 glm::vec3 Obstacles::RandomizeTrack(float t)
 {
 	int rng = rand() % 3;
