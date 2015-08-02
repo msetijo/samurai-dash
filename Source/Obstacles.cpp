@@ -1,9 +1,10 @@
 #include "Obstacles.h"
 #include "PlayerModel.h"
+#include "SplineModel.h"
 #include <GL/glew.h>
 using namespace std;
 
-Obstacles::Obstacles()
+Obstacles::Obstacles() :Model()
 {
 	//distance = 5;
 }
@@ -13,6 +14,7 @@ glm::vec3 Obstacles::GetPlayerPos()
 	mPlayerModel = new PlayerModel();
 	return mPlayerModel->GetPosition();
 }
+
 
 Model* Obstacles::GetRandomModel()
 {

@@ -9,7 +9,7 @@
 
 class PlayerModel;
 
-class Obstacles
+class Obstacles :Model
 {
 public:
 	static int distance;
