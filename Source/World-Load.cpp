@@ -28,6 +28,7 @@ void World::LoadScene() {
 
 
 	mPlayerModel = new PlayerModel();
+	mWolfModel = new WolfModel();
 	
 	// Create the capsue for sheep
 	Capsule* sheepCapsule = new Capsule();
@@ -43,9 +44,14 @@ void World::LoadScene() {
 	mPlayerModel->Load(iss);
 
 	mModel.push_back(mPlayerModel);
+	mModel.push_back(mWolfModel);
+	mWolfModel->SetParent(mPlayerModel);
 
 	// Finally the static samurai-dash scene is loaded
 	LoadScene(sceneFile);
+
+	// Move
+	mWolfModel->setAnimation(FindAnimation("\"BackAndForth\""));
 
 	SkyboxModel* skybox = new SkyboxModel();
 	mModel.push_back(skybox);

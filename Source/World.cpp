@@ -53,6 +53,7 @@ World::World()
 
 	mSplineModel = nullptr;
 	mPlayerModel = nullptr;
+	mWolfModel = nullptr;
 
     // TODO - You can un-comment out these 2 temporary billboards and particle system
     // That can help you debug billboards, you can set the billboard texture to billboardTest.png
