@@ -187,16 +187,17 @@
     <ClCompile Include="..\Source\WolfModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Obstacles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\MoonLighting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="..\Source\SphereModel-VertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Discoball.cpp">
+=======
+    <ClCompile Include="..\Source\Obstacles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\MoonLighting.cpp">
+>>>>>>> 68b31a59f70bdd72b3226ac7433bc39c7000a1a8
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -294,13 +295,14 @@
     <ClInclude Include="..\Source\WolfModel.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="..\Source\Discoball.h">
+=======
     <ClInclude Include="..\Source\Obstacles.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\MoonLighting.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Discoball.h">
+>>>>>>> 68b31a59f70bdd72b3226ac7433bc39c7000a1a8
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,8 +20,11 @@
 #include "Billboard.h"
 #include "SplineFactory.h"
 #include "SkyboxModel.h"
-#include "Obstacles.h"
+<<<<<<< HEAD
 #include "Discoball.h"
+=======
+#include "Obstacles.h"
+>>>>>>> 68b31a59f70bdd72b3226ac7433bc39c7000a1a8
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"

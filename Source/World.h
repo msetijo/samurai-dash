@@ -12,6 +12,7 @@
 #include "ParsingHelper.h"
 #include "Billboard.h"
 #include <vector>
+# include "Discoball.h"
 
 class Camera;
 class Model;
@@ -79,4 +80,5 @@ private:
 	Obstacles* mObstacles;
 
 	WolfModel* mWolfModel;
+	Discoball* mDiscoBall;
 };
