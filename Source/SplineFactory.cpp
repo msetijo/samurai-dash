@@ -71,9 +71,9 @@ void SplineFactory::makeTriangleStrip(SplineModel& spline) {
 
 	std::vector<SplineModel::Vertex> points;
 
-	vec3 red = vec3(1.0f, 0.0f, 0.0f);
-	vec3 green = vec3(0.0f, 1.0f, 0.0f);
-	vec3 blue = vec3(0.0f, 1.0f, 0.0f);
+	vec3 red =	vec3(1.0f, 0.0f, 0.0f);
+	vec3 green =vec3(0.0f, 1.0f, 0.0f);
+	vec3 blue = vec3(0.0f, 0.0f, 1.0f);
 
 	vec3 shift = vec3(trackWidth / 2, 0, 0);
 	float timeStep = 1.0f / triangleStripSegmentCount;
