@@ -129,6 +129,7 @@
     <ClCompile Include="..\Source\Math.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
     <ClCompile Include="..\Source\ObjectModel.cpp" />
+    <ClCompile Include="..\Source\Obstacles.cpp" />
     <ClCompile Include="..\Source\ParticleDescriptor.cpp" />
     <ClCompile Include="..\Source\ParticleEmitter.cpp" />
     <ClCompile Include="..\Source\ParticleSystem.cpp" />
@@ -149,7 +150,6 @@
     <ClCompile Include="..\Source\World-Load.cpp" />
     <ClCompile Include="..\Source\World-Update.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
-    <ClCompile Include="Obstacles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Animation.h" />
@@ -163,6 +163,7 @@
     <ClInclude Include="..\Source\Math.h" />
     <ClInclude Include="..\Source\Model.h" />
     <ClInclude Include="..\Source\ObjectModel.h" />
+    <ClInclude Include="..\Source\Obstacles.h" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
     <ClInclude Include="..\Source\ParticleDescriptor.h" />
     <ClInclude Include="..\Source\ParticleEmitter.h" />

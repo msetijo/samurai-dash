@@ -6,6 +6,7 @@
 #include "World.h"
 #include "Camera.h"
 #include "RendererHelper.h"
+#include "Obstacles.h"
 //#include "ParsingHelper.h"
 
 #include <glm/gtc/type_ptr.hpp>
@@ -23,7 +24,6 @@ SplineModel::~SplineModel()
 void SplineModel::Draw()
 {
 	Shader shader = RendererHelper::GetShader(SHADER_SPLINE);
-
 	shader.Bind();
 
 	shader.SetMatrix("ViewProjectonTransform", World::GetInstance()->GetCamera()->GetViewProjectionMatrix());

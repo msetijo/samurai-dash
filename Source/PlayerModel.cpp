@@ -8,7 +8,7 @@
 
 #include <GLFW/glfw3.h>
 #include <glm/gtx/quaternion.hpp>
-
+#include "Obstacles.h"
 using namespace std;
 using namespace glm;
 
@@ -43,9 +43,7 @@ void PlayerModel::UpdatePosition(float dt) {
 
 	SplineModel::Plane p = World::GetInstance()->GetSpline()->PlaneAt(mCurrentSplineTime);
 	float trackPieceWidth = SplineFactory::trackWidth / 3;
-
 	SetPosition(p.position + vec3(0, PlayerModel::MODEL_SPACE_HEIGHT_OFFSET, 0) + TrackShiftDir(mTrack) * trackPieceWidth);
-
 	vec3 j = vec3(0, 1, 0);
 	vec3 B = normalize(cross(p.tangent, p.normal));
 
@@ -56,9 +54,7 @@ void PlayerModel::UpdatePosition(float dt) {
 	quat quat2 = angleAxis(rotation, p.normal);
 
 	quat quatRotation = quat2 * quat1;
-
 	SetRotation(axis(quatRotation), angle(quatRotation));
-	
 }
 
 vec3 PlayerModel::TrackShiftDir(Track dir) {

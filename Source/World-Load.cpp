@@ -28,7 +28,6 @@ void World::LoadScene() {
 
 
 	mPlayerModel = new PlayerModel();
-
 	ci_string str = "particleSystem = \"poop\"\n";
 	ci_istringstream iss(str);
 	mPlayerModel->Load(iss);
