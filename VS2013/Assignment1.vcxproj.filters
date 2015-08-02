@@ -184,6 +184,12 @@
     <ClCompile Include="..\Source\WolfModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Obstacles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\MoonLighting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\ParticleDescriptor.h">
@@ -277,6 +283,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\WolfModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Obstacles.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\MoonLighting.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,7 +9,7 @@
 #include "SplineFactory.h"
 #include "SkyboxModel.h"
 #include "CapsuleModel.h"
-
+#include "Obstacles.h"
 #include "RealTimeCollisionDetection.h"
 
 using namespace std;
@@ -25,6 +25,7 @@ void World::LoadScene() {
 
 	mSplineModel = SplineFactory::LoadSpline();
 	//mModel.push_back(mSplineModel);
+
 
 
 	mPlayerModel = new PlayerModel();
@@ -47,6 +48,7 @@ void World::LoadScene() {
 	mModel.push_back(mWolfModel);
 	mWolfModel->SetParent(mPlayerModel);
 
+	mObstacles->PopulateRandomSample();
 	// Finally the static samurai-dash scene is loaded
 	LoadScene(sceneFile);
 

@@ -8,6 +8,7 @@
 
 class SplineModelPlaneDelegate;
 
+enum Track { TRACK_LEFT, TRACK_MIDDLE, TRACK_RIGHT };
 class SplineModel : public Model {
 
 public:
@@ -30,11 +31,10 @@ public:
 	virtual void Draw();
 
 	glm::vec3 At(float t);
+	glm::vec3 TrackShiftDir(Track dir, float t);
 
 	Plane PlaneAt(float t);
-
 	float MaxTime() { return mControlPoints.size() - 4; }
-
 	bool HasControlPoints() { return !mControlPoints.empty(); }
 	std::vector<Vertex>& GetControlPoints() { return mControlPoints; }
 
@@ -50,7 +50,6 @@ protected:
 private:
 
 	std::vector<Vertex> mControlPoints;
-
 	SplineModelPlaneDelegate* mSplineModelPlaneDelegate;
 
 	VertexArray mArray;
