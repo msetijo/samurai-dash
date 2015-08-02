@@ -20,6 +20,7 @@
 #include "Billboard.h"
 #include "SplineFactory.h"
 #include "SkyboxModel.h"
+#include "Obstacles.h"
 #include "Discoball.h"
 
 #include <GLFW/glfw3.h>
@@ -36,7 +37,7 @@ World* World::instance;
 World::World()
 {
     instance = this;
-
+	mObstacles = new Obstacles();
 	// Setup Camera
 	mCamera.push_back(new FirstPersonCamera(vec3(3.0f, 1.0f, 5.0f)));
 	mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
@@ -117,6 +118,7 @@ World::~World()
 	}
 	mCamera.clear();
 
+	delete mObstacles;
 	delete mpBillboardList;
 }
 
@@ -139,6 +141,8 @@ void World::Draw()
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
 
+	mObstacles->Draw();
+
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
@@ -157,7 +161,6 @@ void World::Draw()
 	}
 
 	// Draw Path Lines
-	
 	// Set Shader for path lines
 	unsigned int prevShader = Renderer::GetCurrentShader();
 	Renderer::SetShader(SHADER_PATH_LINES);

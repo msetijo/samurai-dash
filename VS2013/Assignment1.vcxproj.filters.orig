@@ -80,17 +80,16 @@
     <None Include="..\Assets\Shaders\Skybox.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-<<<<<<< HEAD
-    <None Include="..\Assets\Scenes\Discoball.scene">
-=======
     <None Include="..\Assets\Scenes\CollisionDemo.scene">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
+    <None Include="..\Assets\Scenes\Discoball.scene">
       <Filter>Resource Files\Scenes</Filter>
     </None>
     <None Include="..\Assets\Scenes\Animal.scene">
       <Filter>Resource Files\Scenes</Filter>
     </None>
     <None Include="..\Assets\Scenes\Player.scene">
->>>>>>> 4d0d3da4a8c0045fef4b1c11c34e2ec2ba496ac6
       <Filter>Resource Files\Scenes</Filter>
     </None>
   </ItemGroup>
@@ -161,12 +160,6 @@
     <ClCompile Include="..\Source\Textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="..\Source\SphereModel-VertexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Discoball.cpp">
-=======
     <ClCompile Include="..\Source\RealTimeCollisionDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -192,7 +185,19 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\WolfModel.cpp">
->>>>>>> 4d0d3da4a8c0045fef4b1c11c34e2ec2ba496ac6
+      <Filter>Source Files</Filter>
+    </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="..\Source\SphereModel-VertexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Discoball.cpp">
+=======
+    <ClCompile Include="..\Source\Obstacles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\MoonLighting.cpp">
+>>>>>>> 68b31a59f70bdd72b3226ac7433bc39c7000a1a8
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -269,9 +274,6 @@
     <ClInclude Include="..\Source\AssetsDir.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="..\Source\Discoball.h">
-=======
     <ClInclude Include="..\Source\tiny_obj_loader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -291,7 +293,16 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\WolfModel.h">
->>>>>>> 4d0d3da4a8c0045fef4b1c11c34e2ec2ba496ac6
+      <Filter>Source Files</Filter>
+    </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="..\Source\Discoball.h">
+=======
+    <ClInclude Include="..\Source\Obstacles.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\MoonLighting.h">
+>>>>>>> 68b31a59f70bdd72b3226ac7433bc39c7000a1a8
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,7 +20,11 @@
 #include "Billboard.h"
 #include "SplineFactory.h"
 #include "SkyboxModel.h"
+<<<<<<< HEAD
 #include "Discoball.h"
+=======
+#include "Obstacles.h"
+>>>>>>> 68b31a59f70bdd72b3226ac7433bc39c7000a1a8
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -36,7 +40,7 @@ World* World::instance;
 World::World()
 {
     instance = this;
-
+	mObstacles = new Obstacles();
 	// Setup Camera
 	mCamera.push_back(new FirstPersonCamera(vec3(3.0f, 1.0f, 5.0f)));
 	mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
@@ -45,9 +49,9 @@ World::World()
 
     
     // TODO: You can play with different textures by changing the billboardTest.bmp to another texture
-	// int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
-    int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/Particle.png");
 
+	// int billboardTextureID = TexureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
+    int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/Particle.png");
     assert(billboardTextureID != 0);
 
     mpBillboardList = new BillboardList(2048, billboardTextureID);
@@ -117,6 +121,7 @@ World::~World()
 	}
 	mCamera.clear();
 
+	delete mObstacles;
 	delete mpBillboardList;
 }
 
@@ -139,6 +144,8 @@ void World::Draw()
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
 
+	mObstacles->Draw();
+
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
@@ -157,7 +164,6 @@ void World::Draw()
 	}
 
 	// Draw Path Lines
-	
 	// Set Shader for path lines
 	unsigned int prevShader = Renderer::GetCurrentShader();
 	Renderer::SetShader(SHADER_PATH_LINES);
@@ -199,102 +205,6 @@ void World::Draw()
 	Renderer::EndFrame();
 }
 
-<<<<<<< HEAD
-void World::LoadScene() {
-
-	// The world's scene for samurai-dash
-	// Do any complex dynamic initialization in here
-
-	// There will always be a spline in samurai-dash
-	SplineModel* spline = SplineFactory::LoadSpline();
-	mModel.push_back(spline);
-	
-	// ...
-
-	// Finally the static samurai-dash scene is loaded
-	LoadScene(sceneFile);
-
-	SkyboxModel* skybox = new SkyboxModel();
-	mModel.push_back(skybox);
-}
-
-void World::LoadScene(const char * scene_path)
-{
-	// Using case-insensitive strings and streams for easier parsing
-	ci_ifstream input;
-	input.open(scene_path, ios::in);
-
-	// Invalid file
-	if(input.fail() )
-	{	 
-		fprintf(stderr, "Error loading file: %s\n", scene_path);
-		getchar();
-		exit(-1);
-	}
-
-	ci_string item;
-	while( std::getline( input, item, '[' ) )   
-	{
-        ci_istringstream iss( item );
-
-		ci_string result;
-		if( std::getline( iss, result, ']') )
-		{
-			if( result == "cube" )
-			{
-				// Box attributes
-				CubeModel* cube = new CubeModel();
-				cube->Load(iss);
-				mModel.push_back(cube);
-			}
-            else if( result == "sphere" )
-            {
-                SphereModel* sphere = new SphereModel();
-                sphere->Load(iss);
-                mModel.push_back(sphere);
-            }
-			else if ( result == "animationkey" )
-			{
-				AnimationKey* key = new AnimationKey();
-				key->Load(iss);
-				mAnimationKey.push_back(key);
-			}
-			else if (result == "animation")
-			{
-				Animation* anim = new Animation();
-				anim->Load(iss);
-				mAnimation.push_back(anim);
-			}
-			else if (result == "discoball") {
-				
-				Discoball* db = new Discoball();
-				db->Load(iss);
-				mModel.push_back(db);
-			}
-			else if ( result.empty() == false && result[0] == '#')
-			{
-				// this is a comment line
-			}
-			else
-			{
-				fprintf(stderr, "Error loading scene file... !");
-				getchar();
-				exit(-1);
-			}
-	    }
-	}
-	input.close();
-
-	// Set Animation vertex buffers
-	for (vector<Animation*>::iterator it = mAnimation.begin(); it < mAnimation.end(); ++it)
-	{
-		// Draw model
-		(*it)->CreateVertexBuffer();
-	}
-}
-
-=======
->>>>>>> 4d0d3da4a8c0045fef4b1c11c34e2ec2ba496ac6
 Animation* World::FindAnimation(ci_string animName)
 {
     for(std::vector<Animation*>::iterator it = mAnimation.begin(); it < mAnimation.end(); ++it)
