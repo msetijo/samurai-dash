@@ -42,7 +42,9 @@ void PlayerModel::Update(float dt) {
 
 void PlayerModel::UpdatePosition(float dt) {
 
-	mCurrentSplineTime += mSplineTimeSpeed * dt;
+	SplineModel* spline = World::GetInstance()->GetSpline();
+
+	mCurrentSplineTime = clamp(mCurrentSplineTime + mSplineTimeSpeed * dt, 0.0f, spline->MaxTime());
 
 	SplineModel::Plane p = World::GetInstance()->GetSpline()->PlaneAt(mCurrentSplineTime);
 	float trackPieceWidth = SplineFactory::trackWidth / 3;
