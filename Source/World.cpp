@@ -44,8 +44,9 @@ World::World()
 
     
     // TODO: You can play with different textures by changing the billboardTest.bmp to another texture
-	// int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
-    int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/Particle.png");
+	int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
+    //int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/Particle.png");
+	//int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/coronaAd.jpg");
 
     assert(billboardTextureID != 0);
 
@@ -56,20 +57,20 @@ World::World()
 
     // TODO - You can un-comment out these 2 temporary billboards and particle system
     // That can help you debug billboards, you can set the billboard texture to billboardTest.png
-    /*    Billboard *b = new Billboard();
+    /* Billboard *b = new Billboard();
      b->size  = glm::vec2(2.0, 2.0);
      b->position = glm::vec3(0.0, 3.0, 0.0);
      b->color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
      
      Billboard *b2 = new Billboard();
      b2->size  = glm::vec2(2.0, 2.0);
-     b2->position = glm::vec3(0.0, 3.0, 1.0);
+     b2->position = glm::vec3(0.0, 3.0, 5.0);
      b2->color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
 
      mpBillboardList->AddBillboard(b);
      mpBillboardList->AddBillboard(b2);
 
-     
+	 /*
      ParticleDescriptor* fountainDescriptor = new ParticleDescriptor();
      fountainDescriptor->SetFireDescriptor();
      

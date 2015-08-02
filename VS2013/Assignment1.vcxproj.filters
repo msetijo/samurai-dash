@@ -305,6 +305,9 @@
     <Image Include="..\Assets\Textures\Skybox\Nightsky\bottom.jpg">
       <Filter>Resource Files\Textures\Skybox\Nightsky</Filter>
     </Image>
+    <Image Include="..\Assets\Textures\coronaAd.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\Assets\Sounds\RainbowRoad.wav">

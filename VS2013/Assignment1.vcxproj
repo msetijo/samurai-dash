@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Textures\BillboardTest.bmp" />
+    <Image Include="..\Assets\Textures\coronaAd.jpg" />
     <Image Include="..\Assets\Textures\Particle.png" />
     <Image Include="..\Assets\Textures\Skybox\Nightsky\back.jpg" />
     <Image Include="..\Assets\Textures\Skybox\Nightsky\bottom.jpg" />
