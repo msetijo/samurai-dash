@@ -9,7 +9,7 @@
 #include "SplineFactory.h"
 #include "SkyboxModel.h"
 #include "CapsuleModel.h"
-
+#include "Obstacles.h"
 #include "RealTimeCollisionDetection.h"
 
 using namespace std;
@@ -27,13 +27,14 @@ void World::LoadScene() {
 	mModel.push_back(mSplineModel);
 
 
+
 	mPlayerModel = new PlayerModel();
 	ci_string str = "particleSystem = \"poop\"\n";
 	ci_istringstream iss(str);
 	mPlayerModel->Load(iss);
 
 	mModel.push_back(mPlayerModel);
-
+	mObstacles->PopulateRandomSample();
 	// Finally the static samurai-dash scene is loaded
 	LoadScene(sceneFile);
 

@@ -17,6 +17,7 @@ class Camera;
 class Model;
 class SplineModel;
 class PlayerModel;
+class Obstacles;
 class Animation;
 class AnimationKey;
 class ParticleSystem;
@@ -55,6 +56,8 @@ public:
 
 	PlayerModel* GetPlayer() { return mPlayerModel; };
 
+	Obstacles* GetObstacles() { return mObstacles; };
+
 private:
 
 	void UpdateCollision(float dt);
@@ -72,4 +75,5 @@ private:
 
 	SplineModel* mSplineModel;
 	PlayerModel* mPlayerModel;
+	Obstacles* mObstacles;
 };

@@ -9,15 +9,17 @@
 
 class PlayerModel;
 
-class Obstacles :Model
+class Obstacles
 {
 public:
-	static int distance;
+	std::vector < Model* > listObstacles;
 	Obstacles();
 	glm::vec3 GetPlayerPos();
 	void CalculateDistance(double score);
-	CubeModel* GetCube();
+	void RemoveObstacles(int position);
+	void AddObstacles(Model* m);
+	void TransformToWorld();
+	void PopulateRandomSample();
+	void Draw();
 	Model* GetRandomModel();
-private:
-	PlayerModel* mPlayerModel;
 };
