@@ -57,8 +57,6 @@ public:
 
 private:
 	void UpdatePosition(float dt);
-	//glm::vec3 TrackShiftDir(Track dir);
-
 private:
 
 	float mCurrentSplineTime;
