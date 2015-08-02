@@ -51,6 +51,7 @@ World::World()
 
     mpBillboardList = new BillboardList(2048, billboardTextureID);
 
+	mSplineModel = nullptr;
 	mPlayerModel = nullptr;
 
     // TODO - You can un-comment out these 2 temporary billboards and particle system
