@@ -24,11 +24,21 @@ void World::LoadScene() {
 	// Do any complex dynamic initialization in here
 
 	mSplineModel = SplineFactory::LoadSpline();
-	mModel.push_back(mSplineModel);
+	//mModel.push_back(mSplineModel);
 
 
 
 	mPlayerModel = new PlayerModel();
+	
+	// Create the capsue for sheep
+	Capsule* sheepCapsule = new Capsule();
+
+	sheepCapsule->a = vec3(0, 0.25, 0);;
+	sheepCapsule->b = vec3(0, 0.5, 0);
+	sheepCapsule->r = 0.68;
+
+	mPlayerModel->setCapsuleBoundingVolume(sheepCapsule);
+
 	ci_string str = "particleSystem = \"poop\"\n";
 	ci_istringstream iss(str);
 	mPlayerModel->Load(iss);

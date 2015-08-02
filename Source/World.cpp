@@ -189,6 +189,9 @@ void World::Draw()
     // Draw Billboards
     mpBillboardList->Draw();
 
+	// Draw Spline
+	mSplineModel->Draw();
+
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
 
