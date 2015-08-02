@@ -17,6 +17,7 @@ class Camera;
 class Model;
 class SplineModel;
 class PlayerModel;
+class WolfModel;
 class Animation;
 class AnimationKey;
 class ParticleSystem;
@@ -72,4 +73,6 @@ private:
 
 	SplineModel* mSplineModel;
 	PlayerModel* mPlayerModel;
+
+	WolfModel* mWolfModel;
 };

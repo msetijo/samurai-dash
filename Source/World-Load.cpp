@@ -28,12 +28,14 @@ void World::LoadScene() {
 
 
 	mPlayerModel = new PlayerModel();
+	mWolfModel = new WolfModel();
 
 	ci_string str = "particleSystem = \"poop\"\n";
 	ci_istringstream iss(str);
 	mPlayerModel->Load(iss);
 
 	mModel.push_back(mPlayerModel);
+	mModel.push_back(mWolfModel);
 
 	// Finally the static samurai-dash scene is loaded
 	LoadScene(sceneFile);
