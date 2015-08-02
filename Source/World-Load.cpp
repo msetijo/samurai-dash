@@ -45,9 +45,13 @@ void World::LoadScene() {
 
 	mModel.push_back(mPlayerModel);
 	mModel.push_back(mWolfModel);
+	mWolfModel->SetParent(mPlayerModel);
 
 	// Finally the static samurai-dash scene is loaded
 	LoadScene(sceneFile);
+
+	// Move
+	mWolfModel->setAnimation(FindAnimation("\"BackAndForth\""));
 
 	SkyboxModel* skybox = new SkyboxModel();
 	mModel.push_back(skybox);
