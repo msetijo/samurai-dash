@@ -45,7 +45,7 @@ private:
 	/**
 	 *
 	 */
-	static const glm::vec3 controlPointsColor;
+	static const glm::vec4 controlPointsColor;
 
 	/**
 	 * Create random control points for the spline
