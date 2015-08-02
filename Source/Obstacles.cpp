@@ -12,6 +12,7 @@ Obstacles::Obstacles() : listObstacles()
 
 void Obstacles::RemoveObstacles(int position)
 {
+
 }
 
 void Obstacles::AddObstacles(Model* m)
@@ -19,18 +20,12 @@ void Obstacles::AddObstacles(Model* m)
 	listObstacles.push_back(m);
 }
 
-glm::vec3 Obstacles::GetPlayerPos()
-{
-	mPlayerModel = new PlayerModel();
-	return mPlayerModel->GetPosition();
-}
-
 void Obstacles::PopulateRandomSample()
 {
 	int count = 0;
 	float maxTime = World::GetInstance()->GetSpline()->MaxTime();
 	float distanceTime = maxTime / 15.0f;
-
+	float obstaclesZOffset = 0.5f;
 	for (int i = 0; i < 15; i++)
 	{
 		listObstacles.push_back(GetRandomModel());
@@ -40,7 +35,7 @@ void Obstacles::PopulateRandomSample()
 	{
 		count++;
 		SplineModel::Plane p = World::GetInstance()->GetSpline()->PlaneAt(distanceTime * count);
-		m->SetPosition(p.position);
+		m->SetPosition(p.position+ m->GetPosition());
 	}
 }
 
@@ -48,7 +43,10 @@ Model* Obstacles::GetRandomModel()
 {
 	int randomNumb = rand() % 3;
 	if (randomNumb == 0){
-		return new CubeModel();
+		CubeModel* cModel = new CubeModel();
+		cModel->SetPosition(glm::vec3(0, 1.0f, 0));
+		cModel->SetScaling(glm::vec3(3.0f,3.0f,3.0f));
+		return cModel;
 	}
 	else if (randomNumb == 1)
 	{
@@ -56,7 +54,10 @@ Model* Obstacles::GetRandomModel()
 	}
 	else
 	{
-		return new SphereModel();
+		SphereModel* sModel = new SphereModel();
+		sModel->SetPosition(glm::vec3(0, 1.0f, 0));
+		sModel->SetScaling(glm::vec3(3.0f, 3.0f, 3.0f));
+		return sModel;
 	}
 }
 
@@ -72,11 +73,8 @@ void Obstacles::TransformToWorld()
 
 void Obstacles::Draw()
 {
-	for (std::vector<Model*>::iterator it = listObstacles.begin(); it != listObstacles.end(); ++it) {
+	for (std::vector<Model*>::iterator it = listObstacles.begin(); it != listObstacles.end(); ++it) 
+	{
 		(*it)->Draw();
 	}
-
 }
-
-
-

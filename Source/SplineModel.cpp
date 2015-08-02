@@ -44,6 +44,20 @@ void SplineModel::Draw()
 	shader.DisableVertexAttrib(0);
 }
 
+vec3 SplineModel::TrackShiftDir(Track dir, float t) {
+
+	SplineModel::Plane p = World::GetInstance()->GetSpline()->PlaneAt(t);
+
+	vec3 trackShift = vec3(0);
+	switch (dir) {
+	case TRACK_MIDDLE:
+		return vec3(0);
+	case TRACK_LEFT:
+		return p.normal;
+	case TRACK_RIGHT:
+		return -p.normal;
+	}
+}
 vec3 SplineModel::At(float t) {
 
 	int segment = (int)t;

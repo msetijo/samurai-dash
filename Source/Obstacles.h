@@ -14,7 +14,6 @@ class Obstacles
 public:
 	std::vector < Model* > listObstacles;
 	Obstacles();
-	glm::vec3 GetPlayerPos();
 	void CalculateDistance(double score);
 	void RemoveObstacles(int position);
 	void AddObstacles(Model* m);
