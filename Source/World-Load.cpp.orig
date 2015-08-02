@@ -28,7 +28,9 @@ void World::LoadScene() {
 
 
 	mPlayerModel = new PlayerModel();
+<<<<<<< HEAD
 	mWolfModel = new WolfModel();
+=======
 	
 	// Create the capsue for sheep
 	Capsule* sheepCapsule = new Capsule();
@@ -38,6 +40,7 @@ void World::LoadScene() {
 	sheepCapsule->r = 0.68;
 
 	mPlayerModel->setCapsuleBoundingVolume(sheepCapsule);
+>>>>>>> c26c3f77fc330701baa5e68cf3d376b1d11acd1e
 
 	ci_string str = "particleSystem = \"poop\"\n";
 	ci_istringstream iss(str);
