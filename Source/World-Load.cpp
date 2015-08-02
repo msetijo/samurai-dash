@@ -9,6 +9,7 @@
 #include "SplineFactory.h"
 #include "SkyboxModel.h"
 #include "CapsuleModel.h"
+#include "Discoball.h"
 
 #include "RealTimeCollisionDetection.h"
 
@@ -29,6 +30,7 @@ void World::LoadScene() {
 
 	mPlayerModel = new PlayerModel();
 	mWolfModel = new WolfModel();
+	mDiscoBall = new Discoball();
 	
 	// Create the capsue for sheep
 	Capsule* sheepCapsule = new Capsule();
@@ -45,6 +47,7 @@ void World::LoadScene() {
 
 	mModel.push_back(mPlayerModel);
 	mModel.push_back(mWolfModel);
+	mModel.push_back(mDiscoBall);
 	mWolfModel->SetParent(mPlayerModel);
 
 	// Finally the static samurai-dash scene is loaded
