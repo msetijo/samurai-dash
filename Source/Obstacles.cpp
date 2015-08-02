@@ -13,7 +13,7 @@ Obstacles::Obstacles() : listObstacles()
 
 void Obstacles::RemoveObstacles(int position)
 {
-
+	listObstacles.erase(listObstacles.begin() + position);
 }
 
 void Obstacles::AddObstacles(Model* m)
