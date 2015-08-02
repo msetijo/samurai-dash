@@ -31,12 +31,10 @@
 using namespace std;
 using namespace glm;
 
-#if defined(PLATFORM_OSX)
-const char* World::sceneFile = "Scenes/SamuraiDash.scene";
-#else
-const char* World::sceneFile = "../Assets/Scenes/SamuraiDash.scene";
-#endif
-
+#if defined(PLAFORM_OSX)
+cont char* World::sceneFile = "Scenes/SamuraiDash.scene";
+#ele
+#endf
 World* World::instance;
 
 World::World()
@@ -51,18 +49,21 @@ World::World()
 
     
     // TODO: You can play with different textures by changing the billboardTest.bmp to another texture
-#if defined(PLATFORM_OSX)
-//    int billboardTextureID = TextureLoader::LoadTexture("Textures/BillboardTest.bmp");
-    int billboardTextureID = TextureLoader::LoadTexture("Textures/Particle.png");
-#else
-//    int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
+#if defined(PATFORM_OSX)
+//    int illboardTextureID = TextureLoader::LoadTexture("Textures/BillboardTest.bmp");
+    int bllboardTextureID = TextureLoader::LoadTexture("Textures/Particle.png");
+#els
+	// int billboardTextureID = TexureLoader::LoadTexture("../Assets/Textures/BillboardTest.bmp");
     int billboardTextureID = TextureLoader::LoadTexture("../Assets/Textures/Particle.png");
 #endif
     assert(billboardTextureID != 0);
 
     mpBillboardList = new BillboardList(2048, billboardTextureID);
 
-    
+	mSplineModel = nullptr;
+	mPlayerModel = nullptr;
+	mWolfModel = nullptr;
+
     // TODO - You can un-comment out these 2 temporary billboards and particle system
     // That can help you debug billboards, you can set the billboard texture to billboardTest.png
     /*    Billboard *b = new Billboard();
@@ -132,75 +133,10 @@ World* World::GetInstance()
     return instance;
 }
 
-void World::Update(float dt)
-{
-	// User Inputs
-	// 0 1 2 to change the Camera
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1 ) == GLFW_PRESS)
-	{
-		mCurrentCamera = 0;
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2 ) == GLFW_PRESS)
-	{
-		if (mCamera.size() > 1)
-		{
-			mCurrentCamera = 1;
-		}
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3 ) == GLFW_PRESS)
-	{
-		if (mCamera.size() > 2)
-		{
-			mCurrentCamera = 2;
-		}
-	}
-
-	// Spacebar to change the shader
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0 ) == GLFW_PRESS)
-	{
-		Renderer::SetShader(SHADER_SOLID_COLOR);
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9 ) == GLFW_PRESS)
-	{
-		Renderer::SetShader(SHADER_BLUE);
-	}
-
-    // Update animation and keys
-    for (vector<Animation*>::iterator it = mAnimation.begin(); it < mAnimation.end(); ++it)
-    {
-        (*it)->Update(dt);
-    }
-    
-    for (vector<AnimationKey*>::iterator it = mAnimationKey.begin(); it < mAnimationKey.end(); ++it)
-    {
-        (*it)->Update(dt);
-    }
-
-
-	// Update current Camera
-	mCamera[mCurrentCamera]->Update(dt);
-
-	// Update models
-	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
-	{
-		(*it)->Update(dt);
-	}
-    
-    // Update billboards
-    
-    for (vector<ParticleSystem*>::iterator it = mParticleSystemList.begin(); it != mParticleSystemList.end(); ++it)
-    {
-        (*it)->Update(dt);
-    }
-    
-    mpBillboardList->Update(dt);
-
-}
-
 void World::Draw()
 {
 	Renderer::BeginFrame();
-	
+
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
 
@@ -215,6 +151,17 @@ void World::Draw()
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
 		(*it)->Draw();
+	}
+
+	if (DRAW_BOUNDING_VOLUME) {
+		for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
+		{
+			Model* bvm = (*it)->GetBoundingVolumeModel();
+
+			if (bvm) {
+				bvm->Draw();
+			}		
+		}
 	}
 
 	// Draw Path Lines
@@ -248,6 +195,11 @@ void World::Draw()
     
     // Draw Billboards
     mpBillboardList->Draw();
+
+	// Draw Spline
+	mSplineModel->Draw();
+	Model* bvm = mSplineModel->GetBoundingVolumeModel();
+	if (DRAW_BOUNDING_VOLUME && bvm) { bvm->Draw(); }
 
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);

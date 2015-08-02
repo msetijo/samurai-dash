@@ -13,7 +13,7 @@ class SplineModel : public Model {
 public:
 	struct Vertex {
 		glm::vec3 position;
-		glm::vec3 color;
+		glm::vec4 color;
 	};
 
 	struct Plane {
@@ -33,7 +33,7 @@ public:
 
 	Plane PlaneAt(float t);
 
-	int MaxTime() { return mControlPoints.size() - 4; }
+	float MaxTime() { return mControlPoints.size() - 4; }
 
 	bool HasControlPoints() { return !mControlPoints.empty(); }
 	std::vector<Vertex>& GetControlPoints() { return mControlPoints; }

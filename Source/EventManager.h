@@ -31,6 +31,8 @@ public:
 	static void DisableMouseCursor();
     static float GetRandomFloat(float min, float max);
 
+	static bool IsKeyPressed(int key);
+
 private:
 	// Time
 	static double sLastFrameTime;

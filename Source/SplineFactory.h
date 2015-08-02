@@ -18,6 +18,11 @@ public:
 	 */
 	static const ci_string splineName;
 
+	/***
+	 * The width of the spline track.
+	 */
+	static const float trackWidth;
+
 	static SplineModel* LoadSpline();
 
 private:
@@ -40,7 +45,7 @@ private:
 	/**
 	 *
 	 */
-	static const glm::vec3 controlPointsColor;
+	static const glm::vec4 controlPointsColor;
 
 	/**
 	 * Create random control points for the spline
@@ -55,11 +60,6 @@ private:
 	 */
 	static const int triangleStripSegmentCount;
 
-	/***
-	 * The width of the spline track.
-	 */
-	static const float trackWidth;
-
 	/**
 	 *
 	 */
@@ -71,9 +71,24 @@ private:
 	static void makeTriangleStrip(SplineModel& spline);
 
 	/**
-	 *
+	 * 
 	 */
 	static void makeOscullatingPlanes(SplineModel& spline);
+
+	/**
+	* The offset of the capsule from the end of the track.
+	*/
+	static float endOfTrackCapsuleTimeOffset;
+
+	/**
+	 * The radius of the capsule at the end of the track.
+	 */
+	static float endOfTrackCapsuleRadius;
+
+	/**
+	 * Create the bouding volume for detecting when the player reaches the end of the track.
+	 */
+	static void makeEndOfTrackBoundingVolume(SplineModel& spline);
 };
 
 #endif

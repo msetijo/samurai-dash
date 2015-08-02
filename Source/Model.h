@@ -10,6 +10,7 @@
 #pragma once
 
 #include "ParsingHelper.h"
+#include "RealTimeCollisionDetection.h"
 
 #include <vector>
 
@@ -31,15 +32,25 @@ public:
 
 	virtual glm::mat4 GetWorldMatrix() const;
 
+	void SetParent(Model* parent) { mParent = parent; }
+
 	void SetPosition(glm::vec3 position);
 	void SetScaling(glm::vec3 scaling);
 	void SetRotation(glm::vec3 axis, float angleDegrees);
+	void setCapsuleBoundingVolume(rtcd::Capsule* capsule);
+	void setAnimation(Animation* passedAnimation)
+	{
+		mAnimation = passedAnimation;
+	}
 
 	glm::vec3 GetPosition() const		{ return mPosition; }
 	glm::vec3 GetScaling() const		{ return mScaling; }
 	glm::vec3 GetRotationAxis() const	{ return mRotationAxis; }
 	float     GetRotationAngle() const	{ return mRotationAngleInDegrees; }
     ci_string GetName()                 { return mName; }
+
+	BoundingVolume& GetBoundingVolume() { return mBoundingVolume; }
+	Model* GetBoundingVolumeModel() { return mBoundingVolumeModel; }
 
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token) = 0;
@@ -50,9 +61,14 @@ protected:
 	glm::vec3 mRotationAxis;
 	float     mRotationAngleInDegrees;
 
+	BoundingVolume mBoundingVolume;
+	Model* mBoundingVolumeModel;
+
     // Makes the model follow a list of Animation Keys so it's world transform changes over time
     Animation* mAnimation;
     ParticleSystem* mParticleSystem;
+
+	Model* mParent;
     
 	friend class Animation;
 };

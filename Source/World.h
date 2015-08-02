@@ -15,6 +15,9 @@
 
 class Camera;
 class Model;
+class SplineModel;
+class PlayerModel;
+class WolfModel;
 class Animation;
 class AnimationKey;
 class ParticleSystem;
@@ -23,6 +26,8 @@ class World
 {
 public:
 	static const char* sceneFile;
+	// If true then models with bounding volumes will draw the volumes
+	static const bool DRAW_BOUNDING_VOLUME = true;
 
 	World();
 	~World();
@@ -45,9 +50,16 @@ public:
     void AddParticleSystem(ParticleSystem* particleSystem);
     void RemoveParticleSystem(ParticleSystem* particleSystem);
     
-	Camera* GetCamera() { return mCamera[mCurrentCamera]; }
+	Camera* GetCamera() { return mCamera[mCurrentCamera]; };
+
+	SplineModel* GetSpline() { return mSplineModel; };
+
+	PlayerModel* GetPlayer() { return mPlayerModel; };
 
 private:
+
+	void UpdateCollision(float dt);
+
     static World* instance;
     
 	std::vector<Model*> mModel;
@@ -58,4 +70,9 @@ private:
 	unsigned int mCurrentCamera;
 
     BillboardList* mpBillboardList;
+
+	SplineModel* mSplineModel;
+	PlayerModel* mPlayerModel;
+
+	WolfModel* mWolfModel;
 };

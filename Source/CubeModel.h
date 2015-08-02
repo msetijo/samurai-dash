@@ -34,4 +34,7 @@ private:
 
 	unsigned int mVertexArrayID;
 	unsigned int mVertexBufferID;
+
+	// FIXME - temporary collision test setup
+	rtcd::Capsule mCapsule;
 };
