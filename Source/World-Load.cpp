@@ -24,7 +24,7 @@ void World::LoadScene() {
 	// Do any complex dynamic initialization in here
 
 	mSplineModel = SplineFactory::LoadSpline();
-	mModel.push_back(mSplineModel);
+	//mModel.push_back(mSplineModel);
 
 
 	mPlayerModel = new PlayerModel();
